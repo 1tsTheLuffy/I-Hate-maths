@@ -12,6 +12,11 @@ public class Bullet1 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
+    
+    private void Update()
+    {
+        Destroy(gameObject, 1.2f);
+    }
 
     private void FixedUpdate()
     {

@@ -5,6 +5,7 @@ using Cinemachine;
 
 public class DreamBusController : MonoBehaviour
 {
+    private Vector2 mousePos;
     public Vector2 movement;
     public int health = 10;
     [Range(0f,200f)]
@@ -12,6 +13,8 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] float timer;
     [SerializeField] float timeBtwShoot;
     [SerializeField] float bulletDestroyTime;
+
+    [SerializeField] float x1,x2,y1,y2;
 
     [SerializeField] GameObject[] bulletType;
     [SerializeField] GameObject[] bulletParticleType;
@@ -31,11 +34,13 @@ public class DreamBusController : MonoBehaviour
 
     Rigidbody2D rb;
     SpriteRenderer sr;
+    Camera cam;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sr = GetComponent<SpriteRenderer>();
+        cam = Camera.main;
 
         if(virtualCamera != null)
         {
@@ -46,6 +51,8 @@ public class DreamBusController : MonoBehaviour
         bulletParticle = bulletParticleType[0];
 
         timer = timeBtwShoot;
+
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -53,9 +60,14 @@ public class DreamBusController : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
+        mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+        transform.position = mousePos;
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x,x1,x2), Mathf.Clamp(transform.position.y, y1, y2), transform.position.z);
+
         //For Shooting and everything related to shooting..
 
-        if(Input.GetKey(KeyCode.Z) && timer <= 0)
+        if((Input.GetKey(KeyCode.Z) || Input.GetMouseButton(0)) && timer <= 0)
         {
             Shoot();
             Instantiate(bulletParticle, shootPoint.position, shootPoint.rotation * new Quaternion(0f,90,0f,0f));
@@ -71,6 +83,8 @@ public class DreamBusController : MonoBehaviour
         {
             bullet = bulletType[1];
             timeBtwShoot = .5f;
+            shakeAmplitude = 8f;
+            shakeFrequency = 8f;
         }
         else if(Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -90,7 +104,7 @@ public class DreamBusController : MonoBehaviour
 
         if(health > 7)
         {
-            sr.color = Color.green;
+            sr.color = Color.blue;
         }else if(health < 7 && health > 4)
         {
             sr.color = Color.yellow;
