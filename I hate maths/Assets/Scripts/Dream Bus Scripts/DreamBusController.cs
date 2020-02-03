@@ -47,7 +47,7 @@ public class DreamBusController : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal");
         movement.y = Input.GetAxisRaw("Vertical");
 
-        //For Shooting..
+        //For Shooting and everything related to shooting..
 
         if(Input.GetKey(KeyCode.Z) && timer <= 0)
         {
@@ -58,6 +58,19 @@ public class DreamBusController : MonoBehaviour
         {
             timer -= Time.deltaTime;
         }
+
+        //Temp
+        if(Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            bullet = bulletType[1];
+            timeBtwShoot = .5f;
+        }
+        else if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            bullet = bulletType[0];
+            timer = .35f;
+        }
+        //
 
         //
 
