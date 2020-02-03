@@ -6,14 +6,17 @@ using Cinemachine;
 public class DreamBusController : MonoBehaviour
 {
     public Vector2 movement;
+    public int health = 10;
     [Range(0f,200f)]
     [SerializeField] float movementSpeed;
     [SerializeField] float timer;
     [SerializeField] float timeBtwShoot;
-    [SerializeField] float trailParticleDestroyTime;
+    [SerializeField] float bulletDestroyTime;
 
     [SerializeField] GameObject[] bulletType;
+    [SerializeField] GameObject[] bulletParticleType;
     [SerializeField] GameObject bullet;
+    [SerializeField] GameObject bulletParticle;
 
     [SerializeField] Transform shootPoint;
     [SerializeField] Transform trailPoint;
@@ -27,10 +30,12 @@ public class DreamBusController : MonoBehaviour
     public float shakeFrequency;
 
     Rigidbody2D rb;
+    SpriteRenderer sr;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        sr = GetComponent<SpriteRenderer>();
 
         if(virtualCamera != null)
         {
@@ -38,6 +43,7 @@ public class DreamBusController : MonoBehaviour
         }
 
         bullet = bulletType[0];
+        bulletParticle = bulletParticleType[0];
 
         timer = timeBtwShoot;
     }
@@ -52,6 +58,7 @@ public class DreamBusController : MonoBehaviour
         if(Input.GetKey(KeyCode.Z) && timer <= 0)
         {
             Shoot();
+            Instantiate(bulletParticle, shootPoint.position, shootPoint.rotation * new Quaternion(0f,90,0f,0f));
             elapsedTime = shakeDuration;
             timer = timeBtwShoot;
         }else
@@ -71,6 +78,26 @@ public class DreamBusController : MonoBehaviour
             timer = .35f;
         }
         //
+
+        //
+
+        // EveryThing related to health..
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+        if(health > 7)
+        {
+            sr.color = Color.green;
+        }else if(health < 7 && health > 4)
+        {
+            sr.color = Color.yellow;
+        }else if(health > 0 && health < 4)
+        {
+            sr.color = Color.red;
+        }
 
         //
 
