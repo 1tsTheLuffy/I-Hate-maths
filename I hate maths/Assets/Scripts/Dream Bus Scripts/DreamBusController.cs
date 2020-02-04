@@ -13,6 +13,8 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] float timer;
     [SerializeField] float timeBtwShoot;
     [SerializeField] float bulletDestroyTime;
+    [Range(0f,100f)]
+    [SerializeField] float explosionRadius;
 
     [SerializeField] float x1,x2,y1,y2;
 
@@ -23,6 +25,8 @@ public class DreamBusController : MonoBehaviour
 
     [SerializeField] Transform shootPoint;
     [SerializeField] Transform trailPoint;
+
+    [SerializeField] LayerMask enemyMask;
 
     [Header("Camera Shake")]
     [SerializeField] CinemachineVirtualCamera virtualCamera;
@@ -115,6 +119,11 @@ public class DreamBusController : MonoBehaviour
 
         //
 
+        if(Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1))
+        {
+            Blast();
+        }
+
         CameraShake();
     }
 
@@ -143,5 +152,20 @@ public class DreamBusController : MonoBehaviour
             virtualNoiseCamera.m_FrequencyGain = 0;
             virtualNoiseCamera.m_AmplitudeGain = 0;
         }
+    }
+
+    private void Blast()
+    {
+        Collider2D[] Object = Physics2D.OverlapCircleAll(transform.position, explosionRadius, enemyMask);
+        for (int i = 0; i < Object.Length; i++)
+        {
+            Destroy(Object[i].transform.gameObject);
+        }
+        return;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
 }
