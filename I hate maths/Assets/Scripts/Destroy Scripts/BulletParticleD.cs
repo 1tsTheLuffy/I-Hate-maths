@@ -6,6 +6,6 @@ public class BulletParticleD : MonoBehaviour
 {
     private void Update()
     {
-        Destroy(gameObject, 1f);
+        Destroy(gameObject, 2f);
     }
 }
