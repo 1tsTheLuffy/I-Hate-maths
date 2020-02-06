@@ -6,18 +6,57 @@ public class Two : MonoBehaviour
 {
     private int health = 2;
     [SerializeField] float speed;
+    [SerializeField] float frequency;
+    [SerializeField] float magnitude;
 
-    [SerializeField] GameObject one;
+    [SerializeField] float timer;
+    [SerializeField] float timeBtwSpawn;
+
+    [SerializeField] GameObject Bullet;
+
+    [SerializeField] Transform shootPoint;
+
+    private CameraShake shake;
 
     Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+
+        timer = timeBtwSpawn;
+    }
+
+    private void Update()
+    {
+        if (shake == null)
+            return;
+
+        if(timer <= 0)
+        {
+            Shoot();
+            timer = timeBtwSpawn;
+        }else
+        {
+            timer -= Time.deltaTime;
+        }
+
+        
+    }
+
+    private GameObject Shoot()
+    {
+        GameObject instance = Instantiate(Bullet, shootPoint.position, shootPoint.rotation);
+        return instance;
     }
 
     private void FixedUpdate()
     {
+        Vector2 pos = transform.position;
+        pos.y = Mathf.Sin(Time.time * frequency) * magnitude;
+        transform.position = pos;
         transform.Translate(Vector2.left * speed * Time.deltaTime);
     }
 
@@ -26,6 +65,10 @@ public class Two : MonoBehaviour
         if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
         {
             Destroy(gameObject);
+            Destroy(collision.transform.gameObject);
+            shake.elapsedTime = .1f;
+            shake.shakeAmplitude = 1f;
+            shake.shakeFrequency = 1f;
         }
     }
            

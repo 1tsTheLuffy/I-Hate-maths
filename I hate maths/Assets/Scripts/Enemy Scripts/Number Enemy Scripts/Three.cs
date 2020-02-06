@@ -28,6 +28,9 @@ public class Three : MonoBehaviour
 
     private void Update()
     {
+        if (controller == null)
+            return;
+
         destroyParticle.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
         Vector2 direction = new Vector2(bus.position.x - transform.position.x, bus.position.y - transform.position.y);
         transform.right = -direction;
@@ -48,18 +51,15 @@ public class Three : MonoBehaviour
     {
         if(collision.CompareTag("DreamBus"))
         {
-            controller.health -= 3;
-            controller.shakeFrequency = .5f;
-            controller.shakeAmplitude = 2f;
-            controller.elapsedTime = 0.1f;
-            health = 0;
+            Destroy(gameObject);
+            tempObj = Instantiate(destroyParticle, transform.position, new Quaternion(-90f, 0f, 0f, 0f));
+            controller.health -= 2;
+            
         }
 
         if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
         {
-            controller.shakeFrequency = .5f;
-            controller.shakeAmplitude = 1f;
-            controller.elapsedTime = 0.1f;
+            
             rb.AddForce(Vector2.right * 20f * Time.deltaTime, ForceMode2D.Impulse);
             health -= 1;
             Destroy(collision.transform.gameObject);
@@ -71,8 +71,6 @@ public class Three : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         tempObj = Instantiate(destroyParticle, transform.position,new Quaternion(-90f,0f,0f,0f));
         Destroy(gameObject);
-        controller.shakeFrequency = .5f;
-        controller.shakeAmplitude = 2f;
-        controller.elapsedTime = 0.1f;
+
     }
 }

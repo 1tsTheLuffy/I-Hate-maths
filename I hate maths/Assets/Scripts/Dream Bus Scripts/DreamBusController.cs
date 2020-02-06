@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class DreamBusController : MonoBehaviour
 {
@@ -18,6 +20,8 @@ public class DreamBusController : MonoBehaviour
 
     [SerializeField] float x1,x2,y1,y2;
 
+    [SerializeField] TextMeshProUGUI healthText;
+
     [SerializeField] GameObject[] bulletType;
     [SerializeField] GameObject[] bulletParticleType;
     [SerializeField] GameObject bullet;
@@ -28,13 +32,8 @@ public class DreamBusController : MonoBehaviour
 
     [SerializeField] LayerMask enemyMask;
 
-    [Header("Camera Shake")]
-    [SerializeField] CinemachineVirtualCamera virtualCamera;
-    private CinemachineBasicMultiChannelPerlin virtualNoiseCamera;
-    public float shakeDuration;
-    public float elapsedTime;
-    public float shakeAmplitude;
-    public float shakeFrequency;
+    [Header("Shake")]
+    [SerializeField] CameraShake shake;
 
     Rigidbody2D rb;
     SpriteRenderer sr;
@@ -46,13 +45,12 @@ public class DreamBusController : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         cam = Camera.main;
 
-        if(virtualCamera != null)
-        {
-            virtualNoiseCamera = virtualCamera.GetCinemachineComponent<Cinemachine.CinemachineBasicMultiChannelPerlin>();
-        }
+        shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
 
         bullet = bulletType[0];
         bulletParticle = bulletParticleType[0];
+
+        healthText.text = health.ToString();
 
         timer = timeBtwShoot;
 
@@ -75,7 +73,7 @@ public class DreamBusController : MonoBehaviour
         {
             Shoot();
             Instantiate(bulletParticle, shootPoint.position, shootPoint.rotation * new Quaternion(0f,90,0f,0f));
-            elapsedTime = shakeDuration;
+            shake.elapsedTime = shake.shakeDuration;
             timer = timeBtwShoot;
         }else
         {
@@ -87,8 +85,8 @@ public class DreamBusController : MonoBehaviour
         {
             bullet = bulletType[1];
             timeBtwShoot = .5f;
-            shakeAmplitude = 8f;
-            shakeFrequency = 8f;
+            shake.shakeAmplitude = 8f;
+            shake.shakeFrequency = 8f;
         }
         else if(Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -104,6 +102,7 @@ public class DreamBusController : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
+           // SceneManager.LoadScene(0);
         }
 
         if(health > 7)
@@ -117,14 +116,19 @@ public class DreamBusController : MonoBehaviour
             sr.color = Color.red;
         }
 
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            health--;
+        }
+
+        healthText.text = health.ToString();
+
         //
 
-        if(Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1))
         {
             Blast();
         }
-
-        CameraShake();
     }
 
     private void FixedUpdate()
@@ -136,22 +140,6 @@ public class DreamBusController : MonoBehaviour
     {
         GameObject bulletDes = Instantiate(bullet, shootPoint.position, Quaternion.identity);
         return bulletDes;
-    }
-
-    private void CameraShake()
-    {
-        if (elapsedTime > 0)
-        {
-            virtualNoiseCamera.m_AmplitudeGain = shakeAmplitude;
-            virtualNoiseCamera.m_FrequencyGain = shakeFrequency;
-            elapsedTime -= Time.deltaTime;
-        }
-        else
-        {
-            elapsedTime = 0;
-            virtualNoiseCamera.m_FrequencyGain = 0;
-            virtualNoiseCamera.m_AmplitudeGain = 0;
-        }
     }
 
     private void Blast()

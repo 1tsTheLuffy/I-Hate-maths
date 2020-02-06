@@ -20,7 +20,6 @@ public class Bullet1 : MonoBehaviour
     {
         Destroy(gameObject, 1.2f);
 
-        Destroy(temp, 1.5f);
     }
 
     private void FixedUpdate()
@@ -31,5 +30,6 @@ public class Bullet1 : MonoBehaviour
     private void OnDestroy()
     {
         temp = Instantiate(destroyParticle, transform.position,transform.rotation);
+        Destroy(temp, 1.5f);
     }
 }

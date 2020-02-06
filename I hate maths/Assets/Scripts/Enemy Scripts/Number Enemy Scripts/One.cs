@@ -11,6 +11,8 @@ public class One : MonoBehaviour
 
     [SerializeField] GameObject destroyParticle;
 
+    private CameraShake shake;
+
     private Transform bus;
 
     private Rigidbody2D rb;
@@ -21,6 +23,9 @@ public class One : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
         controller = GameObject.FindGameObjectWithTag("DreamBus").GetComponent<DreamBusController>();
+
+        shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+
         health = 1;
     }
 
@@ -32,6 +37,9 @@ public class One : MonoBehaviour
 
     private void Update()
     {
+        if (controller == null)
+            return;
+
         distance = Vector2.Distance(transform.position, bus.position);
         
 
@@ -64,15 +72,15 @@ public class One : MonoBehaviour
         if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
         {
             health = 0;
-            controller.elapsedTime = .1f;
+            shake.elapsedTime = .1f;
+            shake.shakeAmplitude = 1f;
+            shake.shakeFrequency = 1f;
             Destroy(collision.transform.gameObject);
         }
         if(collision.CompareTag("DreamBus"))
         {
             health = 0;
-            controller.shakeAmplitude = 2f;
-            controller.shakeFrequency = 1f;
-            controller.elapsedTime = .1f;
+           
             controller.health--;
         }
     }
