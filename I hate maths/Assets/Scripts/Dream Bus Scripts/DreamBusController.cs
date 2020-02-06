@@ -146,6 +146,14 @@ public class DreamBusController : MonoBehaviour
             shake.shakeFrequency = 1f;
             health -= 1;
         }
+        if(collision.CompareTag("EnemyBomb"))
+        {
+            Destroy(collision.transform.gameObject);
+            shake.elapsedTime = .5f;
+            shake.shakeAmplitude = 2f;
+            shake.shakeFrequency = 1f;
+            health -= 5;
+        }
     }
 
     private GameObject Shoot()
