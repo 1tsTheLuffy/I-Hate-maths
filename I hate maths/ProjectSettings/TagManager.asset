@@ -8,6 +8,9 @@ TagManager:
   - Bullet1
   - TriangleBullet
   - CameraShake
+  - EnemyBullet
+  - Route
+  - Route1
   layers:
   - Default
   - TransparentFX

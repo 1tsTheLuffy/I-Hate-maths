@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Two : MonoBehaviour
 {
-    private int health = 2;
     [SerializeField] float speed;
     [SerializeField] float frequency;
     [SerializeField] float magnitude;
@@ -13,6 +12,7 @@ public class Two : MonoBehaviour
     [SerializeField] float timeBtwSpawn;
 
     [SerializeField] GameObject Bullet;
+    [SerializeField] GameObject destroyParticle;
 
     [SerializeField] Transform shootPoint;
 
@@ -37,12 +37,17 @@ public class Two : MonoBehaviour
         if(timer <= 0)
         {
             Shoot();
-            timer = timeBtwSpawn;
+            float randomTime = Random.Range(.3f, .6f);
+            timer = randomTime;
         }else
         {
             timer -= Time.deltaTime;
         }
 
+        if(transform.position.x < -25)
+        {
+            Destroy(gameObject);
+        }
         
     }
 
@@ -71,5 +76,11 @@ public class Two : MonoBehaviour
             shake.shakeFrequency = 1f;
         }
     }
-           
+
+    private void OnDestroy()
+    {
+        GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
+        Destroy(instance, 1f);
+    }
+
 }

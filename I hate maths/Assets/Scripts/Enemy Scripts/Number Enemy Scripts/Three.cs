@@ -9,7 +9,9 @@ public class Three : MonoBehaviour
     [SerializeField] float waitTime;
 
     private GameObject tempObj;
+    private GameObject damageParticleInstance;
     [SerializeField] GameObject destroyParticle;
+    [SerializeField] GameObject damageParticle;
 
     private Transform bus;
 
@@ -45,6 +47,7 @@ public class Three : MonoBehaviour
         }
 
         Destroy(tempObj, 4f);
+        Destroy(damageParticleInstance, 1.2f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -59,7 +62,7 @@ public class Three : MonoBehaviour
 
         if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
         {
-            
+            damageParticleInstance = Instantiate(damageParticle, collision.transform.position, Quaternion.identity);
             rb.AddForce(Vector2.right * 20f * Time.deltaTime, ForceMode2D.Impulse);
             health -= 1;
             Destroy(collision.transform.gameObject);

@@ -225,6 +225,8 @@ MonoBehaviour:
   waitTime: 0.28
   destroyParticle: {fileID: 7142168392469099367, guid: f0b4ba02b17e884468726406815eb32b,
     type: 3}
+  damageParticle: {fileID: 8501044940788950832, guid: 3293402b7e858944ab7920c0798fda6a,
+    type: 3}
 --- !u!95 &2522207829669867879
 Animator:
   serializedVersion: 3

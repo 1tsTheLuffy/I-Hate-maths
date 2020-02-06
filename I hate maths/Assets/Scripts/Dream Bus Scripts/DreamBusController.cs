@@ -136,6 +136,18 @@ public class DreamBusController : MonoBehaviour
         transform.Translate(movement.x * movementSpeed * Time.fixedDeltaTime, movement.y * movementSpeed * Time.fixedDeltaTime, rb.transform.position.z);
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("EnemyBullet"))
+        {
+            Destroy(collision.transform.gameObject);
+            shake.elapsedTime = .05f;
+            shake.shakeAmplitude = 1f;
+            shake.shakeFrequency = 1f;
+            health -= 1;
+        }
+    }
+
     private GameObject Shoot()
     {
         GameObject bulletDes = Instantiate(bullet, shootPoint.position, Quaternion.identity);

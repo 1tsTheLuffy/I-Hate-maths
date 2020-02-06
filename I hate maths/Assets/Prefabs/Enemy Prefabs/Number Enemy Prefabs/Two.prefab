@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 3110991211429378027}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.26, y: 0.56, z: 0}
-  m_LocalScale: {x: 0.811456, y: 0.811456, z: 0.811456}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7018330359813920788}
   m_Father: {fileID: 0}
@@ -280,7 +280,9 @@ MonoBehaviour:
   speed: 2
   frequency: 5
   magnitude: 5
-  timer: 0.8
-  timeBtwSpawn: 0.8
+  timer: 0.6
+  timeBtwSpawn: 0.6
   Bullet: {fileID: 3368283304531815764, guid: 19fc9c7477e964448a5469349a40bffe, type: 3}
+  destroyParticle: {fileID: 8617966038247362432, guid: 9387ce1f4c1c5804884088d4b20621e7,
+    type: 3}
   shootPoint: {fileID: 7018330359813920788}
