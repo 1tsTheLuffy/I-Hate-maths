@@ -12,6 +12,8 @@ TagManager:
   - Route
   - Route1
   - EnemyBomb
+  - SM
+  - Electric
   layers:
   - Default
   - TransparentFX

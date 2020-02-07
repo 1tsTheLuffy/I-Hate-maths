@@ -80,6 +80,11 @@ public class DreamBusController : MonoBehaviour
             timer -= Time.deltaTime;
         }
 
+        //Electric Shooting..
+
+
+        //
+
         //Temp
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -108,10 +113,10 @@ public class DreamBusController : MonoBehaviour
         if(health > 7)
         {
             sr.color = Color.blue;
-        }else if(health < 7 && health > 4)
+        }else if(health < 10 && health > 6)
         {
             sr.color = Color.yellow;
-        }else if(health > 0 && health < 4)
+        }else if(health > 0 && health < 6)
         {
             sr.color = Color.red;
         }

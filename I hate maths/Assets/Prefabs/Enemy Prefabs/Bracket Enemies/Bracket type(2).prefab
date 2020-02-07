@@ -189,7 +189,7 @@ MonoBehaviour:
   destroyParticle:
   - {fileID: 1328323485093631172, guid: 10758993111cbc742b8a3bd97e4f99d8, type: 3}
   - {fileID: 730167321640107747, guid: 88367d330cda4ac4c961dc2f3ab4dcf2, type: 3}
-  Point: {fileID: 0}
+  Point: {fileID: 8414911059145549015, guid: e864d0096a936444cbf7f1954ff6d5c1, type: 3}
   shootPoint:
   - {fileID: 8160213205200838024}
   - {fileID: 8160213205306889666}

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BombBracket : MonoBehaviour
 {
+    private int health = 1;
     [SerializeField] float speed;
     [SerializeField] float timer;
     [SerializeField] float timeBtwSpawn;
@@ -38,6 +39,11 @@ public class BombBracket : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     private void FixedUpdate()
@@ -53,7 +59,7 @@ public class BombBracket : MonoBehaviour
             shake.shakeAmplitude = 2f;
             shake.shakeFrequency = .5f;
             Destroy(collision.transform.gameObject);
-            Destroy(gameObject);
+            health = 0;
         }
     }
 

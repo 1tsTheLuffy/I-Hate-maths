@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Two : MonoBehaviour
 {
+    private int health = 1;
     [SerializeField] float speed;
     [SerializeField] float frequency;
     [SerializeField] float magnitude;
@@ -48,6 +49,11 @@ public class Two : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
         
     }
 
@@ -69,12 +75,23 @@ public class Two : MonoBehaviour
     {
         if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
         {
-            Destroy(gameObject);
             Destroy(collision.transform.gameObject);
-            shake.elapsedTime = .1f;
-            shake.shakeAmplitude = 1f;
-            shake.shakeFrequency = 1f;
+            ThisShake(.1f, 1f, 1f);
+            health = 0;
         }
+
+        if(collision.CompareTag("Electric"))
+        {
+            health = 0;
+            ThisShake(.1f, 1f, 1f);
+        }
+    }
+
+    void ThisShake(float duration, float amp, float frequency = 1f)
+    {
+        shake.elapsedTime = duration;
+        shake.shakeAmplitude = amp;
+        shake.shakeFrequency = frequency;
     }
 
     private void OnDestroy()

@@ -17,12 +17,14 @@ public class One : MonoBehaviour
 
     private Rigidbody2D rb;
     [SerializeField] DreamBusController controller;
+    PlayerScoreManager sm;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
         controller = GameObject.FindGameObjectWithTag("DreamBus").GetComponent<DreamBusController>();
+        sm = GameObject.FindGameObjectWithTag("SM").GetComponent<PlayerScoreManager>();
 
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
 
@@ -47,6 +49,7 @@ public class One : MonoBehaviour
         {
             Destroy(gameObject);
             Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            sm.score++;
         }
     }
 
@@ -71,18 +74,29 @@ public class One : MonoBehaviour
     {
         if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
         {
+            ThisShake(.05f, 1f, 1f);
             health = 0;
-            shake.elapsedTime = .1f;
-            shake.shakeAmplitude = 1f;
-            shake.shakeFrequency = 1f;
             Destroy(collision.transform.gameObject);
         }
         if(collision.CompareTag("DreamBus"))
         {
             health = 0;
-           
+            ThisShake(.1f, 1f, 1f);
             controller.health--;
         }
+
+        if(collision.CompareTag("Electric"))
+        {
+            health = 0;
+            ThisShake(.1f, 1f, 1f);
+        }
+    }
+
+    void ThisShake(float duration, float amp, float frequency = 1f)
+    {
+        shake.elapsedTime = duration;
+        shake.shakeAmplitude = amp;
+        shake.shakeFrequency = frequency;
     }
 
     private void OnBecameInvisible()

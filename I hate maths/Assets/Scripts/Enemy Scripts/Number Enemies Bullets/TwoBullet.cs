@@ -28,7 +28,7 @@ public class TwoBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bullet1"))
+        if(collision.CompareTag("Bullet1") || collision.CompareTag("Electric"))
         {
             Destroy(gameObject);
             Destroy(collision.transform.gameObject);
@@ -38,6 +38,6 @@ public class TwoBullet : MonoBehaviour
     private void OnDestroy()
     {
         GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
-        Destroy(gameObject, 1f);
+        Destroy(instance, 1f);
     }
 }

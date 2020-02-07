@@ -259,6 +259,7 @@ MonoBehaviour:
   x2: 9
   y1: -10
   y2: 8
+  healthText: {fileID: 0}
   bulletType:
   - {fileID: 7000307223416912072, guid: 518bf536176dac94aba505139d926e58, type: 3}
   - {fileID: 4301549098020708905, guid: 999b156813a79d349804ca178504b62f, type: 3}
@@ -271,11 +272,7 @@ MonoBehaviour:
   enemyMask:
     serializedVersion: 2
     m_Bits: 256
-  virtualCamera: {fileID: 0}
-  shakeDuration: 0.05
-  elapsedTime: 0
-  shakeAmplitude: 4
-  shakeFrequency: 4
+  shake: {fileID: 0}
 --- !u!1 &4624389411624392368
 GameObject:
   m_ObjectHideFlags: 0

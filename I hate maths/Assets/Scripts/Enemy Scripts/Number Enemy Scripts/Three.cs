@@ -18,12 +18,14 @@ public class Three : MonoBehaviour
     private DreamBusController controller; 
 
     Rigidbody2D rb;
+    CameraShake shake;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
         controller = GameObject.FindGameObjectWithTag("DreamBus").GetComponent<DreamBusController>();
+        shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
         health = 3;
         destroyParticle.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
     }
@@ -39,7 +41,7 @@ public class Three : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, bus.position, speed * Time.deltaTime);
 
-        if(health == 0)
+        if(health <= 0)
         {
             //Destroy(gameObject);
             rb.gravityScale = 10f;
@@ -54,10 +56,10 @@ public class Three : MonoBehaviour
     {
         if(collision.CompareTag("DreamBus"))
         {
-            Destroy(gameObject);
+            health = 0;
             tempObj = Instantiate(destroyParticle, transform.position, new Quaternion(-90f, 0f, 0f, 0f));
             controller.health -= 2;
-            
+            ThisShake(.1f, 2f, 1f);
         }
 
         if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
@@ -66,7 +68,21 @@ public class Three : MonoBehaviour
             rb.AddForce(Vector2.right * 20f * Time.deltaTime, ForceMode2D.Impulse);
             health -= 1;
             Destroy(collision.transform.gameObject);
+            ThisShake(.05f, 1f, .5f);
         }
+
+        if(collision.CompareTag("Electric"))
+        {
+            health = 0;
+            ThisShake(.1f, 1f, 1f);
+        }
+    }
+
+    void ThisShake(float duration,float amp, float frequency = 1f)
+    {
+        shake.elapsedTime = duration;
+        shake.shakeAmplitude = amp;
+        shake.shakeFrequency = frequency;
     }
     
     IEnumerator spawn()
