@@ -28,9 +28,15 @@ public class Electric : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("EnemyBullet"))
+        if(collision.CompareTag("Enemy"))
         {
             instance = Instantiate(shockParticles, collision.transform.position, Quaternion.identity);
+        }
+
+        if (collision.CompareTag("EnemyBullet"))
+        {
+            instance = Instantiate(shockParticles, collision.transform.position, Quaternion.identity);
+            Destroy(collision.transform.gameObject);
         }
     }
 }

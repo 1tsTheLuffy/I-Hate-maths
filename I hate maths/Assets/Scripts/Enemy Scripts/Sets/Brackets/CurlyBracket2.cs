@@ -70,7 +70,20 @@ public class CurlyBracket2 : MonoBehaviour
     {
         if(collision.CompareTag("Bullet1"))
         {
-            health -= 1;
+            health = 0;
+            shake.C_Shake(.01f,1f,1f);
+        }
+
+        if(collision.CompareTag("Electric"))
+        {
+            health = 0;
+            shake.C_Shake(.1f, 1f, 1f);
+        }
+
+        if(collision.CompareTag("DreamBus"))
+        {
+            health = 0;
+            shake.C_Shake();
         }
     }
 

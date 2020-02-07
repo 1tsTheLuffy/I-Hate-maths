@@ -10,6 +10,7 @@ public class DreamBusController : MonoBehaviour
     private Vector2 mousePos;
     public Vector2 movement;
     public int health = 10;
+    [Header("Floats")]
     [Range(0f,200f)]
     [SerializeField] float movementSpeed;
     [SerializeField] float timer;
@@ -17,19 +18,25 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] float bulletDestroyTime;
     [Range(0f,100f)]
     [SerializeField] float explosionRadius;
-
     [SerializeField] float x1,x2,y1,y2;
+    [SerializeField] float shockTime = 1f;
 
+    [Header("UI")]
     [SerializeField] TextMeshProUGUI healthText;
 
+    [Header("GameObjects")]
     [SerializeField] GameObject[] bulletType;
     [SerializeField] GameObject[] bulletParticleType;
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject bulletParticle;
+    [SerializeField] GameObject Electric;
 
+    [Header("Transforms")]
     [SerializeField] Transform shootPoint;
     [SerializeField] Transform trailPoint;
+    [SerializeField] Transform shockPoint;
 
+    [Header("LayerMasks")]
     [SerializeField] LayerMask enemyMask;
 
     [Header("Shake")]
@@ -81,7 +88,14 @@ public class DreamBusController : MonoBehaviour
         }
 
         //Electric Shooting..
-
+        if(Input.GetKeyDown(KeyCode.Space) && shockTime <= 0)
+        {
+            Instantiate(Electric, shockPoint.position, Quaternion.identity);
+            shockTime = 1f;
+        }else
+        {
+            shockTime -= Time.deltaTime;
+        }
 
         //
 

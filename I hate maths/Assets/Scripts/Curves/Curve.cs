@@ -21,7 +21,7 @@ public class Curve : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        randomNum = Random.Range(0, 2);
+        randomNum = Random.Range(0, 3);
         if(randomNum == 0)
         {
             i = 0;

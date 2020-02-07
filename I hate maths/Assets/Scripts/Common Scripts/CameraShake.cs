@@ -43,4 +43,12 @@ public class CameraShake : MonoBehaviour
             virtualNoiseCamera.m_AmplitudeGain = 0;
         }
     }
+
+    public void C_Shake(float duration = .01f, float amplitude = 1f, float frequency = 1f)
+    {
+        elapsedTime = duration;
+        shakeAmplitude = amplitude;
+        shakeFrequency = frequency;
+        Debug.Log("Called!!");
+    }
 }

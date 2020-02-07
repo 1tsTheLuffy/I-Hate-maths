@@ -74,29 +74,22 @@ public class One : MonoBehaviour
     {
         if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
         {
-            ThisShake(.05f, 1f, 1f);
+            shake.C_Shake(.1f, 2f, 1f);
             health = 0;
             Destroy(collision.transform.gameObject);
         }
         if(collision.CompareTag("DreamBus"))
         {
             health = 0;
-            ThisShake(.1f, 1f, 1f);
+            shake.C_Shake(.1f, 2f, 1f);
             controller.health--;
         }
 
         if(collision.CompareTag("Electric"))
         {
             health = 0;
-            ThisShake(.1f, 1f, 1f);
+            shake.C_Shake(.1f, 1f , 1f);
         }
-    }
-
-    void ThisShake(float duration, float amp, float frequency = 1f)
-    {
-        shake.elapsedTime = duration;
-        shake.shakeAmplitude = amp;
-        shake.shakeFrequency = frequency;
     }
 
     private void OnBecameInvisible()

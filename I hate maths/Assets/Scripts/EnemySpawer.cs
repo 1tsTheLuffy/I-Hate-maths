@@ -7,6 +7,7 @@ public class EnemySpawer : MonoBehaviour
     private bool isStarted;
     private bool isBombBracketI;
     private bool isCB2Started;
+    private bool isHalfStarted;
     PlayerScoreManager sm;
 
     [System.Serializable]
@@ -48,11 +49,19 @@ public class EnemySpawer : MonoBehaviour
             }
         }
 
-        if(sm.score > 5)
+        if(sm.score > 15)
         {
             if(isCB2Started == false)
             {
                 StartCoroutine(CB2());
+            }
+        }
+
+        if(sm.score > 1)
+        {
+            if(isHalfStarted == false)
+            {
+                StartCoroutine(HalfCurl());
             }
         }
     }
@@ -102,6 +111,18 @@ public class EnemySpawer : MonoBehaviour
             yield return new WaitForSeconds(delay);
             int i = Random.Range(0,getEnemyData[3].EnemyPosition.Length);
             Instantiate(getEnemyData[3].Enemy[0], getEnemyData[3].EnemyPosition[i].position, Quaternion.identity);
+        }
+    }
+
+    IEnumerator HalfCurl()
+    {
+        isHalfStarted = true;
+        while(isHalfStarted == true)
+        {
+            float delay = Random.Range(getEnemyData[4].x, getEnemyData[4].y);
+            yield return new WaitForSeconds(delay);
+            int i = Random.Range(0, getEnemyData[4].EnemyPosition.Length);
+            Instantiate(getEnemyData[4].Enemy[0], getEnemyData[4].EnemyPosition[i].position, Quaternion.identity);
         }
     }
 }
