@@ -279,9 +279,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   frequency: 5
-  magnitude: 5
-  timer: 0.6
-  timeBtwSpawn: 0.6
+  magnitude: 7.5
+  timer: 0
+  timeBtwSpawn: 0
   Bullet: {fileID: 3368283304531815764, guid: 19fc9c7477e964448a5469349a40bffe, type: 3}
   destroyParticle: {fileID: 8617966038247362432, guid: 9387ce1f4c1c5804884088d4b20621e7,
     type: 3}

@@ -37,7 +37,7 @@ public class Two : MonoBehaviour
         if(timer <= 0)
         {
             Shoot();
-            float randomTime = Random.Range(.3f, .6f);
+            float randomTime = Random.Range(.05f,.1f);
             timer = randomTime;
         }else
         {
