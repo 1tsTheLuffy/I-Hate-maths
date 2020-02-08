@@ -2,46 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Four : MonoBehaviour
+public class Seven : MonoBehaviour
 {
-    private int health;
-    [SerializeField] float speed;
+    private int health = 1;
     [SerializeField] float timer;
     [SerializeField] float timeBtwSpawn;
 
-    [SerializeField] GameObject Bomb;
+    [SerializeField] GameObject bullet;
     [SerializeField] GameObject destroyParticle;
 
-    [SerializeField] Transform spawnPoint;
+    private Transform bus;
+    [SerializeField] Transform shootPoint;
+
+
+    PlayerScoreManager sm;
 
     Rigidbody2D rb;
+    Animator animator;
     CameraShake shake;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        sm = GameObject.FindGameObjectWithTag("SM").GetComponent<PlayerScoreManager>();
+        bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
 
         health = 1;
-
-        timer = timeBtwSpawn;
     }
 
     private void Update()
     {
-        if (timer <= 0)
+        Vector2 direction = new Vector2(bus.position.x - transform.position.x, bus.position.y - transform.position.y);
+        transform.right = -direction;
+
+        if(timer <= 0)
         {
-            Instantiate(Bomb, spawnPoint.position, Quaternion.identity);
+            animator.SetBool("isFire", true);
+            shake.C_Shake(.1f, .5f, .5f);
+            Instantiate(bullet, shootPoint.position, shootPoint.rotation);
             timer = timeBtwSpawn;
-        }
-        else
+        }else
         {
             timer -= Time.deltaTime;
-        }
-
-        if(transform.position.x < -22f)
-        {
-            Destroy(gameObject);
         }
 
         if(health <= 0)
@@ -56,30 +60,20 @@ public class Four : MonoBehaviour
         {
             Destroy(collision.transform.gameObject);
             health = 0;
-            shake.C_Shake(.1f, 1f, 1f);
-        }   
-
+            sm.score++;
+            shake.C_Shake(.1f, .5f, .5f);
+        }
         if(collision.CompareTag("Electric"))
         {
             health = 0;
+            sm.score++;
             shake.C_Shake(.1f, 1f, 1f);
         }
     }
 
-    private void FixedUpdate()
-    {
-        transform.Translate(Vector2.left * speed * Time.fixedDeltaTime);
-    }
-
-    private void OnBecameInvisible()
-    {
-        Destroy(gameObject);
-        Debug.Log("OUT!!");
-    }
-
     private void OnDestroy()
     {
-        GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
-        Destroy(instance, 1.2f);
+        GameObject instance = Instantiate(destroyParticle ,transform.position, Quaternion.identity);
+        Destroy(instance, 1f);
     }
 }

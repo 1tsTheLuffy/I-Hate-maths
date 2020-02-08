@@ -34,15 +34,18 @@ public class EnemySpawer : MonoBehaviour
 
     private void Update()
     {
+        // One..
         if(!isStarted)
         {
             StartCoroutine(One());
+            StartCoroutine(Seven());
         }
         if(Input.GetKeyDown(KeyCode.F))
         {
             //isStarted = false;
         }
 
+        // Two..
         if(sm.score > 15)
         {
             if(isTwoStarted == false)
@@ -51,6 +54,7 @@ public class EnemySpawer : MonoBehaviour
             }
         }
         
+        // Bomb Btacket..
         if(sm.score > 25)
         {
             if(isBombBracketI == false)
@@ -59,6 +63,7 @@ public class EnemySpawer : MonoBehaviour
             }
         }
 
+        // CB2..
         if(sm.score > 15)
         {
             if(isCB2Started == false)
@@ -67,6 +72,7 @@ public class EnemySpawer : MonoBehaviour
             }
         }
 
+        // Half Curl..
         if(sm.score > 10)
         {
             if(isHalfStarted == false)
@@ -75,6 +81,7 @@ public class EnemySpawer : MonoBehaviour
             }
         }
 
+        // Four..
         if(sm.score > 35)
         {
             if(isFourStarted == false)
@@ -153,6 +160,18 @@ public class EnemySpawer : MonoBehaviour
             yield return new WaitForSeconds(delay);
             int i = Random.Range(0, getEnemyData[5].EnemyPosition.Length);
             Instantiate(getEnemyData[5].Enemy[0], getEnemyData[5].EnemyPosition[i].position, Quaternion.identity);
+        }
+    }
+
+    IEnumerator Seven()
+    {
+        isStarted = true;
+        while(isStarted == true)
+        {
+            float delay = Random.Range(getEnemyData[6].x, getEnemyData[6].y);
+            yield return new WaitForSeconds(delay);
+            int i = Random.Range(0, getEnemyData[6].EnemyPosition.Length);
+            Instantiate(getEnemyData[6].Enemy[0], getEnemyData[6].EnemyPosition[i].position, Quaternion.identity);
         }
     }
 }

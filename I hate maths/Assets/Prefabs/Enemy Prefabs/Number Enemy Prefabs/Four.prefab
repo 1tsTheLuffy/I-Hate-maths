@@ -121,6 +121,8 @@ MonoBehaviour:
   timer: 1.2
   timeBtwSpawn: 1.2
   Bomb: {fileID: 7928833207970158597, guid: 7fe8395ecfa068343b9b576a694602e0, type: 3}
+  destroyParticle: {fileID: 2867806236215317350, guid: 83db0a74fc0c21c44ada57dda3fb932e,
+    type: 3}
   spawnPoint: {fileID: 5660486718913052594}
 --- !u!50 &367067636149774862
 Rigidbody2D:
