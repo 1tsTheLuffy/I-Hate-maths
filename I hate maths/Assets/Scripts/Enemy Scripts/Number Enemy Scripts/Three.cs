@@ -26,7 +26,7 @@ public class Three : MonoBehaviour
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
         controller = GameObject.FindGameObjectWithTag("DreamBus").GetComponent<DreamBusController>();
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
-        health = 3;
+        health = 1;
         destroyParticle.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
     }
 
@@ -58,7 +58,7 @@ public class Three : MonoBehaviour
         {
             health = 0;
             tempObj = Instantiate(destroyParticle, transform.position, new Quaternion(-90f, 0f, 0f, 0f));
-            controller.health -= 2;
+            controller.health -= 1;
             shake.C_Shake(.1f, 1f, 1f);
         }
 

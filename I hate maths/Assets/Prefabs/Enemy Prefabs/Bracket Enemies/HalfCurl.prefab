@@ -191,6 +191,8 @@ MonoBehaviour:
   timer: 0.8
   timeBtwSpawn: 0.8
   Bullet: {fileID: 1856945308861643637, guid: af0541c354a4c464cb2a6140da1d0355, type: 3}
+  destroyParticle: {fileID: 1328323485093631172, guid: 8b347ed5eae002f448d1db5bb8330d93,
+    type: 3}
   shootPoint: {fileID: 5262271418290565876}
 --- !u!95 &107349732
 Animator:

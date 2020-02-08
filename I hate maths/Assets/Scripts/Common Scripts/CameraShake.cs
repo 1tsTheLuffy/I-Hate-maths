@@ -49,6 +49,5 @@ public class CameraShake : MonoBehaviour
         elapsedTime = duration;
         shakeAmplitude = amplitude;
         shakeFrequency = frequency;
-        Debug.Log("Called!!");
     }
 }

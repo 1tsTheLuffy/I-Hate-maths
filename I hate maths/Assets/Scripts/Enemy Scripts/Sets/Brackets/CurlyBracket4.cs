@@ -2,21 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombBracket : MonoBehaviour
+public class CurlyBracket4 : MonoBehaviour
 {
     private int health = 1;
-    [SerializeField] float speed;
     [SerializeField] float timer;
     [SerializeField] float timeBtwSpawn;
 
-    [SerializeField] GameObject bomb;
+    [SerializeField] GameObject[] Bullet;
     [SerializeField] GameObject destroyParticle;
 
-    [SerializeField] Transform spawnPoint;
-
-    CameraShake shake;
-
+    [SerializeField] Transform[] shootPoint;
+ 
     Rigidbody2D rb;
+    CameraShake shake;
 
     private void Start()
     {
@@ -28,16 +26,12 @@ public class BombBracket : MonoBehaviour
     {
         if(timer <= 0)
         {
-            Instantiate(bomb, spawnPoint.position, Quaternion.identity);
+            Instantiate(Bullet[0], shootPoint[0].position, shootPoint[0].rotation);
+            Instantiate(Bullet[1], shootPoint[1].position, shootPoint[1].rotation);
             timer = timeBtwSpawn;
         }else
         {
             timer -= Time.deltaTime;
-        }
-
-        if(transform.position.x < -25f)
-        {
-            Destroy(gameObject);
         }
 
         if(health <= 0)
@@ -46,26 +40,30 @@ public class BombBracket : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
-    {
-      //  transform.Translate(Vector2.left * speed * Time.fixedDeltaTime);
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Bullet1"))
         {
-            shake.elapsedTime = .5f;
-            shake.shakeAmplitude = 2f;
-            shake.shakeFrequency = .5f;
             Destroy(collision.transform.gameObject);
             health = 0;
+            shake.C_Shake(.1f, 1f, 1f);
         }
+
+        if(collision.CompareTag("Electric"))
+        {
+            health = 0;
+            shake.C_Shake(.1f, 2f, 1f);
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Rotate(0f, 0f, 25f);
     }
 
     private void OnDestroy()
     {
         GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
-        Destroy(instance, 1f);
+        Destroy(instance, 1.2f);
     }
 }

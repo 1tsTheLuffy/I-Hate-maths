@@ -174,7 +174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cae55dae44865f4c98889505cdc3940, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.8
+  speed: 3.4
   destroyParticle: {fileID: 8617966038247362432, guid: 04677b1ed17fefc4293acf9cba84321e,
     type: 3}
   controller: {fileID: 0}

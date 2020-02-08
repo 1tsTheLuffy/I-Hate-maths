@@ -5,9 +5,11 @@ using UnityEngine;
 public class EnemySpawer : MonoBehaviour
 {
     private bool isStarted;
+    private bool isTwoStarted;
     private bool isBombBracketI;
     private bool isCB2Started;
     private bool isHalfStarted;
+    private bool isFourStarted;
     PlayerScoreManager sm;
 
     [System.Serializable]
@@ -35,12 +37,20 @@ public class EnemySpawer : MonoBehaviour
         if(!isStarted)
         {
             StartCoroutine(One());
-            StartCoroutine(Two());
         }
         if(Input.GetKeyDown(KeyCode.F))
         {
             //isStarted = false;
         }
+
+        if(sm.score > 15)
+        {
+            if(isTwoStarted == false)
+            {
+                StartCoroutine(Two());
+            }
+        }
+        
         if(sm.score > 25)
         {
             if(isBombBracketI == false)
@@ -57,11 +67,19 @@ public class EnemySpawer : MonoBehaviour
             }
         }
 
-        if(sm.score > 1)
+        if(sm.score > 10)
         {
             if(isHalfStarted == false)
             {
                 StartCoroutine(HalfCurl());
+            }
+        }
+
+        if(sm.score > 35)
+        {
+            if(isFourStarted == false)
+            {
+                StartCoroutine(Four());
             }
         }
     }
@@ -80,8 +98,8 @@ public class EnemySpawer : MonoBehaviour
 
     IEnumerator Two()
     {
-        isStarted = true;
-        while(isStarted == true)
+        isTwoStarted = true;
+        while(isTwoStarted == true)
         {
             float delay = Random.Range(getEnemyData[1].x, getEnemyData[1].y);
             yield return new WaitForSeconds(delay);
@@ -123,6 +141,18 @@ public class EnemySpawer : MonoBehaviour
             yield return new WaitForSeconds(delay);
             int i = Random.Range(0, getEnemyData[4].EnemyPosition.Length);
             Instantiate(getEnemyData[4].Enemy[0], getEnemyData[4].EnemyPosition[i].position, Quaternion.identity);
+        }
+    }
+
+    IEnumerator Four()
+    {
+        isFourStarted = true;
+        while(isFourStarted == true)
+        {
+            float delay = Random.Range(getEnemyData[5].x, getEnemyData[5].y);
+            yield return new WaitForSeconds(delay);
+            int i = Random.Range(0, getEnemyData[5].EnemyPosition.Length);
+            Instantiate(getEnemyData[5].Enemy[0], getEnemyData[5].EnemyPosition[i].position, Quaternion.identity);
         }
     }
 }

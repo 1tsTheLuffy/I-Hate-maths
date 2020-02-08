@@ -8,6 +8,8 @@ public class Two : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] float frequency;
     [SerializeField] float magnitude;
+    [SerializeField] float x;
+    [SerializeField] float y;
 
     [SerializeField] float timer;
     [SerializeField] float timeBtwSpawn;
@@ -38,7 +40,7 @@ public class Two : MonoBehaviour
         if(timer <= 0)
         {
             Shoot();
-            float randomTime = Random.Range(.05f,.1f);
+            float randomTime = Random.Range(x, y);
             timer = randomTime;
         }else
         {

@@ -280,6 +280,8 @@ MonoBehaviour:
   speed: 2
   frequency: 5
   magnitude: 7.5
+  x: 0.5
+  y: 1
   timer: 0
   timeBtwSpawn: 0
   Bullet: {fileID: 3368283304531815764, guid: 19fc9c7477e964448a5469349a40bffe, type: 3}

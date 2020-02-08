@@ -247,7 +247,6 @@ MonoBehaviour:
   objects:
   - {fileID: 7394673349470364666, guid: 4232ae5e3d65fe243a85f3eb1581d9fa, type: 3}
   - {fileID: 2522207829669867886, guid: e8f78577c32e2b94ebae64f6740d5ac4, type: 3}
-  - {fileID: 3110991211429378027, guid: 53864f99d196d144f9811a9bdd254163, type: 3}
   destroyParticle:
   - {fileID: 906035896107243956, guid: 2b0624acecd635e488b8029c5382a1e3, type: 3}
   - {fileID: 1274393997364543615, guid: 0b9febc16fb815048baf2f867bc3be9c, type: 3}

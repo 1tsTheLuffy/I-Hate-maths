@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TwoBullet : MonoBehaviour
+public class Cb4Bullet1 : MonoBehaviour
 {
     [SerializeField] float speed;
-    [SerializeField] float force;
 
     [SerializeField] GameObject destroyParticle;
 
@@ -18,7 +17,7 @@ public class TwoBullet : MonoBehaviour
 
     private void Update()
     {
-        Destroy(gameObject, 8f);
+        Destroy(gameObject, 5f);
     }
 
     private void FixedUpdate()
@@ -26,23 +25,9 @@ public class TwoBullet : MonoBehaviour
         transform.Translate(Vector2.left * speed * Time.fixedDeltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Bullet1"))
-        {
-            Destroy(gameObject);
-            Destroy(collision.transform.gameObject);
-        }
-
-        if(collision.CompareTag("Electric"))
-        {
-            Destroy(gameObject);
-        }
-    }
-
     private void OnDestroy()
     {
         GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
-        Destroy(instance, 1f);
+        Destroy(gameObject, 1f);
     }
 }

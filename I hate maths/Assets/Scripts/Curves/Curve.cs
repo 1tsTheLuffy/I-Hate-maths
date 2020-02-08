@@ -22,16 +22,18 @@ public class Curve : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         randomNum = Random.Range(0, 3);
-        if(randomNum == 0)
-        {
-            i = 0;
-            RouteToFollow = Route[0];
-        }else if(randomNum == 1)
-        {
-            i = 1;
-            RouteToFollow = Route[1];
-        }
+            if (randomNum == 0)
+            {
+                i = 0;
+                RouteToFollow = Route[0];
+            }
+            else if (randomNum == 1)
+            {
+                i = 1;
+                RouteToFollow = Route[1];
+            }
 
+        Debug.Log(Route.Length);
         t = 0;
 
         isGoing = true;
