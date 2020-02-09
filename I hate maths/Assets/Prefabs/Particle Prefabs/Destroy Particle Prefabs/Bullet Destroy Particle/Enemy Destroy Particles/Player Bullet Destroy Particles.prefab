@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5767086487886365642}
   - component: {fileID: 5767086487886365641}
   m_Layer: 0
-  m_Name: Bullet Destroy Particles
+  m_Name: Player Bullet Destroy Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -659,7 +659,7 @@ ParticleSystem:
   ShapeModule:
     serializedVersion: 6
     enabled: 1
-    type: 4
+    type: 0
     angle: 12.462503
     length: 5
     boxThickness: {x: 0, y: 0, z: 0}
@@ -975,8 +975,8 @@ ParticleSystem:
       countCurve:
         serializedVersion: 2
         minMaxState: 3
-        scalar: 100
-        minScalar: 50
+        scalar: 15
+        minScalar: 10
         maxCurve:
           serializedVersion: 2
           m_Curve:

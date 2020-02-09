@@ -173,6 +173,12 @@ public class DreamBusController : MonoBehaviour
             shake.shakeFrequency = 1f;
             health -= 5;
         }
+
+        if(collision.CompareTag("EnemyPoolBullet"))
+        {
+            collision.transform.gameObject.SetActive(false);
+            //health -= 1;
+        }
     }
 
     private GameObject Shoot()

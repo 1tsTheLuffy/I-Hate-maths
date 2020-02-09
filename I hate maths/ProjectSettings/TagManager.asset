@@ -15,6 +15,7 @@ TagManager:
   - SM
   - Electric
   - Enemy
+  - EnemyPoolBullet
   layers:
   - Default
   - TransparentFX

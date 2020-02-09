@@ -4,15 +4,19 @@ using UnityEngine;
 
 public class CurlyBracket1 : MonoBehaviour
 {
-    private int health = 1;
+    private int health = 2;
     [SerializeField] float timer;
     [SerializeField] float timeBtwSpawn;
 
-    [SerializeField] GameObject Bullet;
+    private GameObject damageInstance;
+  //  [SerializeField] GameObject Bullet;
     [SerializeField] GameObject destroyParticle;
+    [SerializeField] GameObject damageParticle;
 
     [SerializeField] Transform shootPoint;
     private Transform Bus;
+
+    [SerializeField] ObjectPooler pooler;
 
     Rigidbody2D rb;
     CameraShake shake;
@@ -22,6 +26,7 @@ public class CurlyBracket1 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
         Bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
+        pooler = GetComponent<ObjectPooler>();
     }
 
     private void Update()
@@ -32,19 +37,24 @@ public class CurlyBracket1 : MonoBehaviour
         Vector2 direction = new Vector2(Bus.position.x - transform.position.x, Bus.position.y - transform.position.y);
         transform.right = -direction;
 
-        if(timer <= 0)
-        {
-            Instantiate(Bullet, shootPoint.position, shootPoint.rotation);
-            timer = timeBtwSpawn;
-        }else
-        {
-            timer -= Time.deltaTime; 
-        }
+        //if(timer <= 0)
+        //{
+        // //   for (int i = 0; i < pooler.size; i++)
+        // //   {
+        //        ObjectPooler.instance.GetFromPool(shootPoint.position, shootPoint.rotation);
+        // //   }
+        //    timer = timeBtwSpawn;
+        //}else
+        //{
+        //    timer -= Time.deltaTime;
+        //}
 
         if(health <= 0)
         {
             Destroy(gameObject);
         }
+
+        Destroy(damageInstance, 1.5f);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -52,8 +62,9 @@ public class CurlyBracket1 : MonoBehaviour
         if(collision.CompareTag("Bullet1"))
         {
             shake.C_Shake(.1f, 1f, 1f);
+            damageInstance = Instantiate(damageParticle, collision.transform.position, Quaternion.identity);
             Destroy(collision.transform.gameObject);
-            health = 0;
+            health -= 1;
         }
 
         if(collision.CompareTag("Electric"))

@@ -15,6 +15,7 @@ public class BombBracket : MonoBehaviour
     [SerializeField] Transform spawnPoint;
 
     CameraShake shake;
+    PlayerScoreManager sm;
 
     Rigidbody2D rb;
 
@@ -22,6 +23,7 @@ public class BombBracket : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        sm = GameObject.FindGameObjectWithTag("SM").GetComponent<PlayerScoreManager>();
     }
 
     private void Update()
@@ -55,11 +57,17 @@ public class BombBracket : MonoBehaviour
     {
         if(collision.CompareTag("Bullet1"))
         {
-            shake.elapsedTime = .5f;
-            shake.shakeAmplitude = 2f;
-            shake.shakeFrequency = .5f;
             Destroy(collision.transform.gameObject);
+            shake.C_Shake(.1f, 2f, 1f);
+            sm.score++;
             health = 0;
+        }
+
+        if(collision.CompareTag("Electric"))
+        {
+            health = 0;
+            shake.C_Shake(.1f, 1f, 1f);
+            sm.score++;
         }
     }
 

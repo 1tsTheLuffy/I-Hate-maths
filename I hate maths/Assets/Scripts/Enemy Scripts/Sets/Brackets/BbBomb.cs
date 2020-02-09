@@ -12,10 +12,12 @@ public class BbBomb : MonoBehaviour
     [SerializeField] GameObject[] destroyParticle;
 
     Rigidbody2D rb;
+    CameraShake shake;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
         applyForce();
     }
 
@@ -28,6 +30,21 @@ public class BbBomb : MonoBehaviour
     {
         Vector2 addForce = new Vector2(side.x * force * Time.fixedDeltaTime, up.y * force * Time.fixedDeltaTime);
         rb.AddForce(addForce);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Bullet1"))
+        {
+            shake.C_Shake(.1f, 2f, .8f);
+            Destroy(gameObject);
+        }
+
+        if(collision.CompareTag("Electric"))
+        {
+            shake.C_Shake(.1f, 2f, .8f);
+            Destroy(gameObject);
+        }
     }
 
     private void OnDestroy()

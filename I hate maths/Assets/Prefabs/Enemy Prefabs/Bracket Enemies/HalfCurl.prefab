@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 5262271417105150866}
   - component: {fileID: 5262271417105150865}
   - component: {fileID: 107349732}
+  - component: {fileID: 5118950182122531770}
+  - component: {fileID: 3925496081803784086}
   m_Layer: 0
   m_Name: HalfCurl
   m_TagString: Untagged
@@ -188,12 +190,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 741f4924ad2313c47b89f756e9421b78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0.8
-  timeBtwSpawn: 0.8
-  Bullet: {fileID: 1856945308861643637, guid: af0541c354a4c464cb2a6140da1d0355, type: 3}
+  timer: 1
+  timeBtwSpawn: 1
   destroyParticle: {fileID: 1328323485093631172, guid: 8b347ed5eae002f448d1db5bb8330d93,
     type: 3}
+  damageParticle: {fileID: 8501044940788950832, guid: 57fe182b38097b64ca580b39624b34f3,
+    type: 3}
   shootPoint: {fileID: 5262271418290565876}
+  pooler: {fileID: 0}
 --- !u!95 &107349732
 Animator:
   serializedVersion: 3
@@ -213,6 +217,37 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5118950182122531770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262271417105150864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e9f32e3bbf8ff4193b13c62a113ff7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 10
+  prefab: {fileID: 1856945308861643637, guid: af0541c354a4c464cb2a6140da1d0355, type: 3}
+--- !u!114 &3925496081803784086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262271417105150864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb76772b3f47cab4b977ca2787325e4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  angle: 0
+  startAngle: 0
+  endAngle: 360
+  angleStep: 0
+  shootPoint: {fileID: 5262271418290565876}
 --- !u!1 &5262271418290565875
 GameObject:
   m_ObjectHideFlags: 0

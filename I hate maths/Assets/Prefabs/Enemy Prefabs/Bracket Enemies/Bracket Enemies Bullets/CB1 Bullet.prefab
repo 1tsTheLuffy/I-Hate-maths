@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -910649909441179588}
   m_Layer: 0
   m_Name: CB1 Bullet
-  m_TagString: EnemyBullet
+  m_TagString: EnemyPoolBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 1856945308861643637}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.667, y: 1.748, z: 0}
-  m_LocalScale: {x: 1, y: 0.045783833, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: a43c67da29091594990f3c1b2b1d6c07, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6fd2279812e4f134d9ee2266993fe85a, type: 3}
   m_Color: {r: 0.80246687, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,5 +144,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireSpeed: 25
+  startAngle: 70
+  endAngle: 90
+  angleStep: 0
+  angle: 0
   destroyParticle: {fileID: 7139877200667302970, guid: 7843cf9cbba326d4b9d5c8c5a3b27e89,
     type: 3}
+  MoveDirection: {x: 15, y: 15}
+  pooler: {fileID: 5118950182122531770, guid: 72b043cd23d12d24886dc53b13e886cb, type: 3}
