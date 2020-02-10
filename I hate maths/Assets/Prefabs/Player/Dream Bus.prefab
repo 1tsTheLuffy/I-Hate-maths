@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 5
   m_Sprite: {fileID: 21300000, guid: fee1539d8365b584983dbfde68aede23, type: 3}
-  m_Color: {r: 0, g: 1, b: 0.065425634, a: 1}
+  m_Color: {r: 0, g: 0.1198678, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -266,6 +266,7 @@ MonoBehaviour:
   bulletType:
   - {fileID: 7000307223416912072, guid: 518bf536176dac94aba505139d926e58, type: 3}
   - {fileID: 4301549098020708905, guid: 999b156813a79d349804ca178504b62f, type: 3}
+  - {fileID: 1415063194840261877, guid: 603e35ede7c9a6a479814f36ec1ea58f, type: 3}
   bulletParticleType:
   - {fileID: 5779331684061460634, guid: 41b6852f217e4434fb7036338a065e83, type: 3}
   - {fileID: 5779331684061460634, guid: 6abde46de3aaeae489430d75af924166, type: 3}
@@ -281,7 +282,11 @@ MonoBehaviour:
   trailPoint: {fileID: 4624389412496967075}
   shockPoint: {fileID: 8666468015955484973, guid: 86c80bc4d0cb81941ba5a52c97a5b9f6,
     type: 3}
-  color: []
+  color:
+  - {r: 0.1442765, g: 1, b: 0, a: 1}
+  - {r: 0.9987322, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  - {r: 0.2028302, g: 1, b: 0.58928126, a: 1}
   enemyMask:
     serializedVersion: 2
     m_Bits: 256

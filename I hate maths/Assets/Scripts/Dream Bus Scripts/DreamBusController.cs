@@ -61,12 +61,14 @@ public class DreamBusController : MonoBehaviour
 
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
 
-        bullet = bulletType[0];
+        bullet = bulletType[2];
         bulletParticle = bulletParticleType[0];
 
         healthText.text = health.ToString();
 
         timer = timeBtwShoot;
+
+        health = 20;
 
         Cursor.visible = false;
     }
@@ -132,7 +134,7 @@ public class DreamBusController : MonoBehaviour
         //Temp
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
-            bullet = bulletType[1];
+            bullet = bulletType[2];
         }
         else if(Input.GetKeyDown(KeyCode.Alpha1))
         {
