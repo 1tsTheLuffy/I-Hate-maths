@@ -16,6 +16,7 @@ TagManager:
   - Electric
   - Enemy
   - EnemyPoolBullet
+  - Health
   layers:
   - Default
   - TransparentFX

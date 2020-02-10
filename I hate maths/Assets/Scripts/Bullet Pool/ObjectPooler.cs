@@ -29,8 +29,6 @@ public class ObjectPooler : MonoBehaviour
             obj.SetActive(false);
             Pool.Enqueue(obj);
         }
-
-        Debug.Log("Here!!");
     }
 
     public GameObject GetFromPool(Vector3 position, Quaternion rotation)

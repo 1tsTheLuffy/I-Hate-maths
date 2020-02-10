@@ -137,6 +137,15 @@ public class DreamBusController : MonoBehaviour
             health--;
         }
 
+        if(health < 0)
+        {
+            health = 0;
+        }
+        if(health > 20)
+        {
+            health = 20;
+        }
+
         healthText.text = health.ToString();
 
         //
@@ -172,6 +181,12 @@ public class DreamBusController : MonoBehaviour
             collision.transform.gameObject.SetActive(false);
             shake.C_Shake(.5f, 1f, 1f);
             health -= 1;
+        }
+
+        if(collision.CompareTag("Health"))
+        {
+            Destroy(collision.transform.gameObject);
+            health += 5;
         }
     }
 
