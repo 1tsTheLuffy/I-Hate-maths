@@ -18,6 +18,7 @@ TagManager:
   - EnemyPoolBullet
   - Health
   - TriangleBulletPowerUp
+  - ShieldBulletPowerUp
   layers:
   - Default
   - TransparentFX

@@ -221,6 +221,7 @@ public class DreamBusController : MonoBehaviour
 
         /* bulletType[0] = Simple Bullet..
          * bulletType[1] = Triangle Bullet..
+         * bulletType[2] = Shield Bullet..
         */
         if(collision.CompareTag("TriangleBulletPowerUp"))
         {
@@ -230,10 +231,24 @@ public class DreamBusController : MonoBehaviour
             bulletParticle = bulletParticleType[1];
             Destroy(collision.transform.gameObject);
             Destroy(instance, 1f);
-            if(bullet == bulletType[0])
+            if(bullet == bulletType[0] || bullet == bulletType[2])
             {
                 timeStart = 20f;
             }else if(bullet == bulletType[1])
+            {
+                timeStart += 20f;
+            }
+        }
+
+        if(collision.CompareTag("ShieldBulletPowerUp"))
+        {
+            StartCoroutine(PowerFlash(Color.green));
+            bullet = bulletType[2];
+            Destroy(collision.transform.gameObject);
+            if(bullet == bulletType[0] || bullet == bulletType[1])
+            {
+                timeStart = 20f;
+            }else if(bullet == bulletType[2])
             {
                 timeStart += 20f;
             }
