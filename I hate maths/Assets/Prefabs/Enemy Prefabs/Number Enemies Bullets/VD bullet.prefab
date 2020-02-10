@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 3095829989486778212}
   - component: {fileID: 4784713680602625896}
-  - component: {fileID: 7166000246791968255}
   - component: {fileID: 4515845843184998945}
   - component: {fileID: 1170268358133073902}
+  - component: {fileID: 4188711599921038160}
   m_Layer: 0
   m_Name: VD bullet
-  m_TagString: EnemyBullet
+  m_TagString: EnemyPoolBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -84,22 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7166000246791968255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3368283304531815764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9d4b801a7f415324ab11098623b37724, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 7.5
-  force: 500
-  destroyParticle: {fileID: 7729764871018054683, guid: 5c8562aa62d02e645870632aa67a370e,
-    type: 3}
 --- !u!50 &4515845843184998945
 Rigidbody2D:
   serializedVersion: 4
@@ -137,3 +121,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &4188711599921038160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3368283304531815764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67190d65c243b114d8cd6d0c25b1cbdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 20
