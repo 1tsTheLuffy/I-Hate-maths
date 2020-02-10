@@ -197,7 +197,6 @@ MonoBehaviour:
   damageParticle: {fileID: 8501044940788950832, guid: 57fe182b38097b64ca580b39624b34f3,
     type: 3}
   shootPoint: {fileID: 5262271418290565876}
-  pooler: {fileID: 0}
 --- !u!95 &107349732
 Animator:
   serializedVersion: 3
@@ -245,8 +244,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   angle: 0
   startAngle: 0
-  endAngle: 360
+  endAngle: -360
   angleStep: 0
+  timer: 1.8
+  timeBtwSpawn: 1.8
   shootPoint: {fileID: 5262271418290565876}
 --- !u!1 &5262271418290565875
 GameObject:

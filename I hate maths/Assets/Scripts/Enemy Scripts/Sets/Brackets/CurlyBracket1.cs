@@ -9,14 +9,11 @@ public class CurlyBracket1 : MonoBehaviour
     [SerializeField] float timeBtwSpawn;
 
     private GameObject damageInstance;
-  //  [SerializeField] GameObject Bullet;
     [SerializeField] GameObject destroyParticle;
     [SerializeField] GameObject damageParticle;
 
     [SerializeField] Transform shootPoint;
     private Transform Bus;
-
-    [SerializeField] ObjectPooler pooler;
 
     Rigidbody2D rb;
     CameraShake shake;
@@ -26,7 +23,6 @@ public class CurlyBracket1 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
         Bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
-        pooler = GetComponent<ObjectPooler>();
     }
 
     private void Update()
@@ -36,18 +32,6 @@ public class CurlyBracket1 : MonoBehaviour
 
         Vector2 direction = new Vector2(Bus.position.x - transform.position.x, Bus.position.y - transform.position.y);
         transform.right = -direction;
-
-        //if(timer <= 0)
-        //{
-        // //   for (int i = 0; i < pooler.size; i++)
-        // //   {
-        //        ObjectPooler.instance.GetFromPool(shootPoint.position, shootPoint.rotation);
-        // //   }
-        //    timer = timeBtwSpawn;
-        //}else
-        //{
-        //    timer -= Time.deltaTime;
-        //}
 
         if(health <= 0)
         {

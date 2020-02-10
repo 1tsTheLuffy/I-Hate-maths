@@ -34,6 +34,9 @@ public class Seven : MonoBehaviour
 
     private void Update()
     {
+        if (bus == null)
+            return;
+
         Vector2 direction = new Vector2(bus.position.x - transform.position.x, bus.position.y - transform.position.y);
         transform.right = -direction;
 

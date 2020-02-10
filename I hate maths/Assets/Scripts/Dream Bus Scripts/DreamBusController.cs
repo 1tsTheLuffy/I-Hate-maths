@@ -103,9 +103,6 @@ public class DreamBusController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
             bullet = bulletType[1];
-            timeBtwShoot = .5f;
-            shake.shakeAmplitude = 8f;
-            shake.shakeFrequency = 8f;
         }
         else if(Input.GetKeyDown(KeyCode.Alpha1))
         {
@@ -160,24 +157,21 @@ public class DreamBusController : MonoBehaviour
         if(collision.CompareTag("EnemyBullet"))
         {
             Destroy(collision.transform.gameObject);
-            shake.elapsedTime = .05f;
-            shake.shakeAmplitude = 1f;
-            shake.shakeFrequency = 1f;
+            shake.C_Shake(0.5f, 1f, 1f);
             health -= 1;
         }
         if(collision.CompareTag("EnemyBomb"))
         {
             Destroy(collision.transform.gameObject);
-            shake.elapsedTime = .5f;
-            shake.shakeAmplitude = 2f;
-            shake.shakeFrequency = 1f;
+            shake.C_Shake(.5f, 2f, 1f);
             health -= 5;
         }
 
         if(collision.CompareTag("EnemyPoolBullet"))
         {
             collision.transform.gameObject.SetActive(false);
-            //health -= 1;
+            shake.C_Shake(.5f, 1f, 1f);
+            health -= 1;
         }
     }
 

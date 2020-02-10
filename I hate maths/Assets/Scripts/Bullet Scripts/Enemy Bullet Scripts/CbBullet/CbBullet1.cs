@@ -6,6 +6,7 @@ public class CbBullet1 : MonoBehaviour
 {
     [SerializeField] float fireSpeed;
 
+    private GameObject instance;
     [SerializeField] GameObject destroyParticle;
 
     [SerializeField] Vector2 MoveDirection;
@@ -16,13 +17,11 @@ public class CbBullet1 : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-
-        Invoke("Disable",3f);
     }
 
     private void Update()
     {
-        //Destroy(gameObject, 2f);
+        Destroy(instance, 2f);
     }
 
     private void FixedUpdate()
@@ -35,15 +34,17 @@ public class CbBullet1 : MonoBehaviour
         MoveDirection = dir;
     }
 
-    private void OnDestroy()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
-        Destroy(instance, 1f);
+        if(collision.CompareTag("DreamBus"))
+        {
+            instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
+        }
     }
 
-    private void Disable()
-    {
-        gameObject.SetActive(false);   
-    }
-
+    //private void OnDisable()
+    //{
+    //    GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
+    //    Destroy(instance, 1f);
+    //}
 }

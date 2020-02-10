@@ -25,9 +25,12 @@ public class ObjectPooler : MonoBehaviour
         for (int i = 0; i < size; i++)
         {
             GameObject obj = Instantiate(prefab);
+           // obj.transform.position = transform.position;
             obj.SetActive(false);
             Pool.Enqueue(obj);
         }
+
+        Debug.Log("Here!!");
     }
 
     public GameObject GetFromPool(Vector3 position, Quaternion rotation)

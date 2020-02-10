@@ -1,4 +1,12 @@
-﻿using System.Collections;
+﻿
+/* A Fire is responsible for shooting bullets in multiple directioon depending upon the angle 
+ The gameobject does not required any type of script for shooring projectiles if this script is attached
+ Every Gameobject requires different types of fire Scipt for now.......*/ 
+
+
+
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +17,9 @@ public class Fire : MonoBehaviour
     [SerializeField] float endAngle;
     [SerializeField] float angleStep;
 
+    [SerializeField] float timer;
+    [SerializeField] float timeBtwSpawn;
+
     [SerializeField] Transform shootPoint;
 
     ObjectPooler pooler;
@@ -17,7 +28,23 @@ public class Fire : MonoBehaviour
     {
         pooler = GetComponent<ObjectPooler>();
 
-        InvokeRepeating("Shoot", 0, 2);
+        timer = timeBtwSpawn;
+    }
+
+    private void Update()
+    {
+        if(timer <= 0)
+        {
+            for (int i = 0; i < pooler.size; i++)
+            {
+                Shoot();
+            }
+
+            timer = timeBtwSpawn;
+        }else
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
     // Update is called once per frame

@@ -23,7 +23,13 @@ public class One : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
-        controller = GameObject.FindGameObjectWithTag("DreamBus").GetComponent<DreamBusController>();
+        if(controller == null)
+        {
+            controller = GameObject.FindGameObjectWithTag("DreamBus").GetComponent<DreamBusController>();
+        }else
+        {
+            return;
+        }
         sm = GameObject.FindGameObjectWithTag("SM").GetComponent<PlayerScoreManager>();
 
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
