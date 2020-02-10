@@ -202,8 +202,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad77da34d786e6f49bf576e4cc45188f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: 0.5
-  timeBtwSpawn: 0.5
+  timer: 1
+  timeBtwSpawn: 1
   bullet: {fileID: 145176980776020042, guid: cb3471c6db70a6248939a37005b9db2a, type: 3}
   destroyParticle: {fileID: 6339198445617318526, guid: c156065158ddd6347b97219be8e0ca3e,
     type: 3}

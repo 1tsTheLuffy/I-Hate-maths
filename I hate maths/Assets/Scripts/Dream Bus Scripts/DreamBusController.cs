@@ -32,7 +32,8 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject bulletParticle;
     [SerializeField] GameObject Electric;
-    [SerializeField] GameObject healthParticle; 
+    [SerializeField] GameObject healthParticle;
+    [SerializeField] GameObject PowerUpTaken;
 
     [Header("Transforms")]
     [SerializeField] Transform shootPoint;
@@ -118,10 +119,12 @@ public class DreamBusController : MonoBehaviour
         if(bullet == bulletType[0])
         {
             timeBtwShoot = .3f;
+            bulletParticle = bulletParticleType[0];
         }
         else if(bullet == bulletType[1])
         {
             timeBtwShoot = .45f;
+            bulletParticle = bulletParticleType[1];
         }
 
         //
@@ -219,11 +222,15 @@ public class DreamBusController : MonoBehaviour
         */
         if(collision.CompareTag("TriangleBulletPowerUp"))
         {
+            GameObject instance = Instantiate(PowerUpTaken, transform.position, Quaternion.identity);
+            StartCoroutine(PowerFlash(Color.red));
+            bullet = bulletType[1];
+            bulletParticle = bulletParticleType[1];
+            Destroy(collision.transform.gameObject);
+            Destroy(instance, 1f);
             if(bullet == bulletType[0])
             {
                 timeStart = 20f;
-                Destroy(collision.transform.gameObject);
-                bullet = bulletType[1];
             }else if(bullet == bulletType[1])
             {
                 timeStart += 20f;
@@ -266,6 +273,13 @@ public class DreamBusController : MonoBehaviour
     IEnumerator HealthFlash()
     {
         sr.color = color[3];
+        yield return new WaitForSeconds(.2f);
+        sr.color = Color.blue;
+    }
+
+    IEnumerator PowerFlash(Color color)
+    {
+        sr.color = color;
         yield return new WaitForSeconds(.2f);
         sr.color = Color.blue;
     }
