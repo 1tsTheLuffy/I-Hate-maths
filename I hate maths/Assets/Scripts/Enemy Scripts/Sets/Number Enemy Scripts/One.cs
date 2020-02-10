@@ -78,11 +78,16 @@ public class One : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
+        if(collision.CompareTag("Bullet1"))
         {
             shake.C_Shake(.1f, 2f, 1f);
             health = 0;
             Destroy(collision.transform.gameObject);
+        }
+        if(collision.CompareTag("TriangleBullet"))
+        {
+            shake.C_Shake(.1f, 2.5f, 1f);
+            health = 0;
         }
         if(collision.CompareTag("DreamBus"))
         {

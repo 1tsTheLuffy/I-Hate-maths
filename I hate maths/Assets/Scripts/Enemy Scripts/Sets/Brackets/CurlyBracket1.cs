@@ -50,8 +50,12 @@ public class CurlyBracket1 : MonoBehaviour
             Destroy(collision.transform.gameObject);
             health -= 1;
         }
-
-        if(collision.CompareTag("Electric"))
+        if (collision.CompareTag("TriangleBullet"))
+        {
+            shake.C_Shake(.1f, 2.5f, 1f);
+            health = 0;
+        }
+        if (collision.CompareTag("Electric"))
         {
             shake.C_Shake(.1f, 1f, 1f);
             health = 0;

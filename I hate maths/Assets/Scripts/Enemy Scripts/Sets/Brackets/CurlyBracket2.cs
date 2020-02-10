@@ -73,8 +73,12 @@ public class CurlyBracket2 : MonoBehaviour
             health = 0;
             shake.C_Shake(.01f,1f,1f);
         }
-
-        if(collision.CompareTag("Electric"))
+        if (collision.CompareTag("TriangleBullet"))
+        {
+            shake.C_Shake(.1f, 2.5f, 1f);
+            health = 0;
+        }
+        if (collision.CompareTag("Electric"))
         {
             health = 0;
             shake.C_Shake(.1f, 1f, 1f);

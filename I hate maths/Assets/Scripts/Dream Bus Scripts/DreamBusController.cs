@@ -20,7 +20,9 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] float explosionRadius;
     [SerializeField] float x1,x2,y1,y2;
     [SerializeField] float shockTime = 1f;
-
+    [SerializeField] float timeStart;
+    [SerializeField] float timeToChangeBullet;
+ 
     [Header("UI")]
     [SerializeField] TextMeshProUGUI healthText;
 
@@ -30,11 +32,15 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject bulletParticle;
     [SerializeField] GameObject Electric;
+    [SerializeField] GameObject healthParticle; 
 
     [Header("Transforms")]
     [SerializeField] Transform shootPoint;
     [SerializeField] Transform trailPoint;
     [SerializeField] Transform shockPoint;
+
+    [Header("Color")]
+    [SerializeField] Color[] color;
 
     [Header("LayerMasks")]
     [SerializeField] LayerMask enemyMask;
@@ -43,7 +49,7 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] CameraShake shake;
 
     Rigidbody2D rb;
-    SpriteRenderer sr;
+    [SerializeField] SpriteRenderer sr;
     Camera cam;
 
     private void Start()
@@ -99,6 +105,27 @@ public class DreamBusController : MonoBehaviour
 
         //
 
+        //Everything related to bullet switching..
+        
+        if(timeStart <= 0)
+        {
+            bullet = bulletType[0];
+        }else
+        {
+            timeStart -= Time.deltaTime;
+        }
+
+        if(bullet == bulletType[0])
+        {
+            timeBtwShoot = .3f;
+        }
+        else if(bullet == bulletType[1])
+        {
+            timeBtwShoot = .45f;
+        }
+
+        //
+
         //Temp
         if(Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -119,17 +146,6 @@ public class DreamBusController : MonoBehaviour
         {
             Destroy(gameObject);
            // SceneManager.LoadScene(0);
-        }
-
-        if(health > 7)
-        {
-            sr.color = Color.blue;
-        }else if(health < 10 && health > 6)
-        {
-            sr.color = Color.yellow;
-        }else if(health > 0 && health < 6)
-        {
-            sr.color = Color.red;
         }
 
         if(Input.GetKeyDown(KeyCode.Q))
@@ -163,8 +179,11 @@ public class DreamBusController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // Triggers for detecting Hit..
+
         if(collision.CompareTag("EnemyBullet"))
         {
+            StartCoroutine(HitFlash());
             Destroy(collision.transform.gameObject);
             shake.C_Shake(0.5f, 1f, 1f);
             health -= 1;
@@ -183,10 +202,32 @@ public class DreamBusController : MonoBehaviour
             health -= 1;
         }
 
+        //
+
+        // Trigger for detecting Power up hit..
         if(collision.CompareTag("Health"))
         {
             Destroy(collision.transform.gameObject);
+            StartCoroutine(HealthFlash());
+            GameObject instance = Instantiate(healthParticle, transform.position, Quaternion.identity); 
             health += 5;
+            Destroy(instance, 1f);
+        }
+
+        /* bulletType[0] = Simple Bullet..
+         * bulletType[1] = Triangle Bullet..
+        */
+        if(collision.CompareTag("TriangleBulletPowerUp"))
+        {
+            if(bullet == bulletType[0])
+            {
+                timeStart = 20f;
+                Destroy(collision.transform.gameObject);
+                bullet = bulletType[1];
+            }else if(bullet == bulletType[1])
+            {
+                timeStart += 20f;
+            }
         }
     }
 
@@ -204,6 +245,29 @@ public class DreamBusController : MonoBehaviour
             Destroy(Object[i].transform.gameObject);
         }
         return;
+    }
+
+    IEnumerator HitFlash()
+    {
+        if(health > 10)
+        {
+            sr.color = color[0];
+        }else if(health > 5 && health < 10)
+        {
+            sr.color = color[1];
+        }else if(health < 5)
+        {
+            sr.color = color[2];
+        }
+        yield return new WaitForSeconds(.1f);
+        sr.color = Color.blue;
+    }
+
+    IEnumerator HealthFlash()
+    {
+        sr.color = color[3];
+        yield return new WaitForSeconds(.2f);
+        sr.color = Color.blue;
     }
 
     private void OnDrawGizmosSelected()

@@ -61,8 +61,12 @@ public class Three : MonoBehaviour
             controller.health -= 1;
             shake.C_Shake(.1f, 1f, 1f);
         }
-
-        if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
+        if (collision.CompareTag("TriangleBullet"))
+        {
+            shake.C_Shake(.1f, 2.5f, 1f);
+            health = 0;
+        }
+        if (collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
         {
             damageParticleInstance = Instantiate(damageParticle, collision.transform.position, Quaternion.identity);
             rb.AddForce(Vector2.right * 20f * Time.deltaTime, ForceMode2D.Impulse);
