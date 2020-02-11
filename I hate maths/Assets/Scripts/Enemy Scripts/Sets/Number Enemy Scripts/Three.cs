@@ -15,7 +15,9 @@ public class Three : MonoBehaviour
 
     private Transform bus;
 
-    private DreamBusController controller; 
+    private DreamBusController controller;
+
+    PlayerScoreManager sm;
 
     Rigidbody2D rb;
     CameraShake shake;
@@ -26,7 +28,10 @@ public class Three : MonoBehaviour
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
         controller = GameObject.FindGameObjectWithTag("DreamBus").GetComponent<DreamBusController>();
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        sm = GameObject.FindGameObjectWithTag("SM").GetComponent<PlayerScoreManager>();
+
         health = 1;
+
         destroyParticle.transform.rotation = new Quaternion(0f, 0f, 0f, 0f);
     }
 
@@ -45,6 +50,7 @@ public class Three : MonoBehaviour
         {
             //Destroy(gameObject);
             rb.gravityScale = 10f;
+            sm.score++;
             StartCoroutine(spawn());
         }
 
@@ -77,7 +83,7 @@ public class Three : MonoBehaviour
 
         if(collision.CompareTag("Electric"))
         {
-            health = 0;
+            Destroy(gameObject);
             shake.C_Shake(.1f, 1f, 1f);
         }
     }

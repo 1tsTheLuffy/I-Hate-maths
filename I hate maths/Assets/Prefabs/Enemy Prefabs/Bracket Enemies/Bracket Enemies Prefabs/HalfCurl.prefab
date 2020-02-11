@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 5262271417105150866}
   - component: {fileID: 5262271417105150865}
   - component: {fileID: 107349732}
-  - component: {fileID: 5118950182122531770}
   - component: {fileID: 3925496081803784086}
+  - component: {fileID: 6190813431466349783}
   m_Layer: 0
   m_Name: HalfCurl
   m_TagString: Untagged
@@ -216,20 +216,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &5118950182122531770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5262271417105150864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15e9f32e3bbf8ff4193b13c62a113ff7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 10
-  prefab: {fileID: 1856945308861643637, guid: af0541c354a4c464cb2a6140da1d0355, type: 3}
 --- !u!114 &3925496081803784086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -242,6 +228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb76772b3f47cab4b977ca2787325e4f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: 10
   angle: 0
   startAngle: 0
   endAngle: -360
@@ -249,6 +236,21 @@ MonoBehaviour:
   timer: 1.8
   timeBtwSpawn: 1.8
   shootPoint: {fileID: 5262271418290565876}
+--- !u!114 &6190813431466349783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5262271417105150864}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8feacbe301e5564e9d31681832b9d44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expand: 1
+  prefab: {fileID: 1856945308861643637, guid: af0541c354a4c464cb2a6140da1d0355, type: 3}
+  pool: []
 --- !u!1 &5262271418290565875
 GameObject:
   m_ObjectHideFlags: 0

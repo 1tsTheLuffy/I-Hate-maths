@@ -22,6 +22,7 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] float shockTime = 1f;
     [SerializeField] float timeStart;
     [SerializeField] float timeToChangeBullet;
+    [SerializeField] int electricNumber;
  
     [Header("UI")]
     [SerializeField] TextMeshProUGUI healthText;
@@ -68,7 +69,8 @@ public class DreamBusController : MonoBehaviour
 
         timer = timeBtwShoot;
 
-        health = 20;
+        health = 200;
+        electricNumber = 100;
 
         Cursor.visible = false;
     }
@@ -97,9 +99,10 @@ public class DreamBusController : MonoBehaviour
         }
 
         //Electric Shooting..
-        if(Input.GetKeyDown(KeyCode.Space) && shockTime <= 0)
+        if(Input.GetKeyDown(KeyCode.Space) && shockTime <= 0 && electricNumber > 0)
         {
             Instantiate(Electric, shockPoint.position, Quaternion.identity);
+            electricNumber--;
             shockTime = 1f;
         }else
         {
@@ -196,20 +199,20 @@ public class DreamBusController : MonoBehaviour
         {
             StartCoroutine(HitFlash());
             Destroy(collision.transform.gameObject);
-            shake.C_Shake(0.5f, 2f, 1f);
+            shake.C_Shake(0.1f, 2f, 1f);
             health -= 1;
         }
         if(collision.CompareTag("EnemyBomb"))
         {
             Destroy(collision.transform.gameObject);
-            shake.C_Shake(.5f, 2f, 1f);
+            shake.C_Shake(.1f, 2f, 1f);
             health -= 5;
         }
 
         if(collision.CompareTag("EnemyPoolBullet"))
         {
             collision.transform.gameObject.SetActive(false);
-            shake.C_Shake(.5f, 2f, 1f);
+            shake.C_Shake(.1f, 2f, 1f);
             health -= 1;
         }
 

@@ -15,6 +15,8 @@ public class CurlyBracket1 : MonoBehaviour
     [SerializeField] Transform shootPoint;
     private Transform Bus;
 
+    PlayerScoreManager sm;
+
     Rigidbody2D rb;
     CameraShake shake;
 
@@ -23,6 +25,7 @@ public class CurlyBracket1 : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
         Bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
+        sm = GameObject.FindGameObjectWithTag("SM").GetComponent<PlayerScoreManager>();
     }
 
     private void Update()
@@ -36,6 +39,7 @@ public class CurlyBracket1 : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
+            sm.score++;
         }
 
         Destroy(damageInstance, 1.5f);
@@ -58,7 +62,7 @@ public class CurlyBracket1 : MonoBehaviour
         if (collision.CompareTag("Electric"))
         {
             shake.C_Shake(.1f, 1f, 1f);
-            health = 0;
+            Destroy(gameObject);
         }
     }
 

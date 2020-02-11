@@ -17,6 +17,8 @@ public class CbBullet1 : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+     //   InvokeRepeating("Disable", 0, 2);
     }
 
     private void Update()
@@ -40,6 +42,11 @@ public class CbBullet1 : MonoBehaviour
         {
             instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
         }
+    }
+
+    private void Disable()
+    {
+        gameObject.SetActive(false);
     }
 
     //private void OnDisable()

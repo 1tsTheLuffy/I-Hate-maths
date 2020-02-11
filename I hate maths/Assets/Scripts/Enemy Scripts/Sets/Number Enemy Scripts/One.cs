@@ -98,7 +98,7 @@ public class One : MonoBehaviour
 
         if(collision.CompareTag("Electric"))
         {
-            health = 0;
+            Destroy(gameObject);
             shake.C_Shake(.1f, 1f , 1f);
         }
     }
@@ -110,6 +110,7 @@ public class One : MonoBehaviour
 
     private void OnDestroy()
     {
-        
+        GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
+        Destroy(instance, 1.2f);
     }
 }

@@ -19,6 +19,8 @@ public class Two : MonoBehaviour
 
     [SerializeField] Transform shootPoint;
 
+    PlayerScoreManager sm;
+
     private CameraShake shake;
 
     Rigidbody2D rb;
@@ -28,6 +30,7 @@ public class Two : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        sm = GameObject.FindGameObjectWithTag("SM").GetComponent<PlayerScoreManager>();
 
         timer = timeBtwSpawn;
     }
@@ -55,6 +58,7 @@ public class Two : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
+            sm.score++;
         }
         
     }
@@ -93,7 +97,7 @@ public class Two : MonoBehaviour
         }
         if (collision.CompareTag("Electric"))
         {
-            health = 0;
+            Destroy(gameObject);
             ThisShake(.1f, 1f, 1f);
         }
     }

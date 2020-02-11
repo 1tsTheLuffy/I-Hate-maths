@@ -212,8 +212,8 @@ MonoBehaviour:
   t: 0
   RouteToFollow: {fileID: 0}
   Route:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 3124430687234195333, guid: bf88844e79a61f94caf70743f632aef9, type: 3}
+  - {fileID: 6262081170377043007, guid: fb50b29eb8d3b53479da5a182f56a1d3, type: 3}
 --- !u!114 &7525470397612087095
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,16 +1,13 @@
-﻿
-/* A Fire is responsible for shooting bullets in multiple directioon depending upon the angle 
+﻿/* A Fire is responsible for shooting bullets in multiple directioon depending upon the angle 
  The gameobject does not required any type of script for shooring projectiles if this script is attached
- Every Gameobject requires different types of fire Scipt for now.......*/ 
-
-
+ Every Gameobject requires different types of fire Scipt for now.......*/
 
 
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Fire : MonoBehaviour
+public class VDFire : MonoBehaviour
 {
     [Header("Number of bullets")]
     [SerializeField] int size;
@@ -25,32 +22,17 @@ public class Fire : MonoBehaviour
     [SerializeField] float timer;
     [SerializeField] float timeBtwSpawn;
 
-    [Header("Transform")]
-    [SerializeField] Transform shootPoint;
-
     ObjectPool pool;
 
     private void Start()
     {
-        timer = timeBtwSpawn;
+        InvokeRepeating("Shoot", 2, 2);
+
         pool = GetComponent<ObjectPool>();
-      //  InvokeRepeating("Shoot", 0, 1.8f);
     }
 
-    private void Update()
+    private void Shoot()
     {
-        if(timer <= 0)
-        {
-            Shoot();
-            timer = timeBtwSpawn;
-        }else
-        {
-            timer -= Time.deltaTime;
-        }
-    }
-    public void Shoot()
-    {
-
         angleStep = ((endAngle - startAngle) / size) * .5f;
         angle = startAngle;
 
@@ -62,14 +44,12 @@ public class Fire : MonoBehaviour
             Vector2 bulletDir = (dir - transform.position).normalized;
 
             GameObject bul = pool.GetFromPool();
-            bul.transform.position = shootPoint.position;
-            bul.transform.rotation = shootPoint.rotation;
+            bul.transform.position = transform.position;
+            bul.transform.rotation = transform.rotation;
             bul.SetActive(true);
-            bul.GetComponent<CbBullet1>().SetMoveDirection(bulletDir);
+            bul.GetComponent<VD_1_Bullet>().SetMoveDirection(bulletDir);
 
             angle += angleStep;
         }
     }
-
-
 }

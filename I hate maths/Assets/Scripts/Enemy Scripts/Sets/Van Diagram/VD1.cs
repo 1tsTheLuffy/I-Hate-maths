@@ -22,10 +22,9 @@ public class VD1 : MonoBehaviour
     [SerializeField] Transform[] RotatePoint;
     private Transform bus;
 
-    [SerializeField] Color[] damageColor;
+    PlayerScoreManager sm;
 
-    [SerializeField] VanFire vanFire;
-    [SerializeField] ObjectPooler pooler;
+    [SerializeField] Color[] damageColor;
 
     Rigidbody2D rb;
     CameraShake shake;
@@ -35,11 +34,10 @@ public class VD1 : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
-        vanFire = GetComponent<VanFire>();
-        pooler = GetComponent<ObjectPooler>();
 
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        sm = GameObject.FindGameObjectWithTag("SM").GetComponent<PlayerScoreManager>();
 
         randomRotatePoint = Random.Range(0, RotatePoint.Length);
         eventType = 1;
@@ -48,7 +46,6 @@ public class VD1 : MonoBehaviour
         target = new Vector2(bus.position.x, bus.position.y);
 
         health = 10f;
-        pooler.size = 20;
     }
 
     private void Update()
@@ -103,8 +100,6 @@ public class VD1 : MonoBehaviour
 
         if(health <= 5)
         {
-            vanFire.startAngle = 0;
-            vanFire.endAngle = -360;
             chaseSpeed = 55f;
         }
 
@@ -115,6 +110,7 @@ public class VD1 : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
+            sm.score++;
             return;
         }
         

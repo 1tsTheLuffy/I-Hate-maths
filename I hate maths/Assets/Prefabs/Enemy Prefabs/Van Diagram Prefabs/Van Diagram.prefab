@@ -15,8 +15,8 @@ GameObject:
   - component: {fileID: 6267643019636766606}
   - component: {fileID: 6267643019636766607}
   - component: {fileID: 6267643019636766604}
-  - component: {fileID: 6267643019636766597}
-  - component: {fileID: 6267643019636766605}
+  - component: {fileID: 1535349118781333451}
+  - component: {fileID: 8237736899448253354}
   m_Layer: 0
   m_Name: Van Diagram
   m_TagString: VD1
@@ -183,17 +183,18 @@ MonoBehaviour:
   timeToMove: 4
   timeToMoveToDifferentPos: 4
   RotatePoint:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 8072655560259422460, guid: 9165feb428ddbbb46813f5ebd393d00f, type: 3}
+  - {fileID: 1418760053486745479, guid: 1a3eb290b7dbb204dba38550097584b0, type: 3}
+  - {fileID: 5487353075726654404, guid: f1b54f7978a522641a290230e79abc80, type: 3}
+  - {fileID: 6496282583314090135, guid: 02cd2a5fccbea4d40a930cb74b587c7b, type: 3}
+  - {fileID: 1749555648098318430, guid: 9f4f3d5cfb4e48d4bbfeb0ba36e711cd, type: 3}
+  - {fileID: 2699187690308200880, guid: e56e8902093b4394ebc26f4e09777fff, type: 3}
+  - {fileID: 3868705980698179068, guid: b8a4469b7de39a74391a97dcd317dc57, type: 3}
   damageColor:
   - {r: 1, g: 1, b: 0, a: 1}
   - {r: 1, g: 0.49045774, b: 0, a: 1}
   - {r: 1, g: 0, b: 0, a: 1}
-  vanFire: {fileID: 0}
-  pooler: {fileID: 0}
---- !u!114 &6267643019636766597
+--- !u!114 &1535349118781333451
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,12 +203,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6267643019636766602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15e9f32e3bbf8ff4193b13c62a113ff7, type: 3}
+  m_Script: {fileID: 11500000, guid: c8feacbe301e5564e9d31681832b9d44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 40
+  expand: 1
   prefab: {fileID: 3368283304531815764, guid: 6172dac2c6dec9543af89a6553855444, type: 3}
---- !u!114 &6267643019636766605
+  pool: []
+--- !u!114 &8237736899448253354
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,14 +218,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 6267643019636766602}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 69ffaebad1592e942938e0eed375cb55, type: 3}
+  m_Script: {fileID: 11500000, guid: 8a8e51a6cbfcee1468b77fe98cedc67e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  size: 20
   angle: 0
   startAngle: 0
   endAngle: -720
   angleStep: 0
-  stepMultiple: 0.5
-  timer: 1.5
-  timeBtwSpawn: 1.5
-  shootPoint: {fileID: 6267643019636766594}
+  timer: 0
+  timeBtwSpawn: 0
