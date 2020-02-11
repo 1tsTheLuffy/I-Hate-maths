@@ -24,16 +24,22 @@ public class VD1 : MonoBehaviour
 
     [SerializeField] Color[] damageColor;
 
+    [SerializeField] VanFire vanFire;
+    [SerializeField] ObjectPooler pooler;
+
     Rigidbody2D rb;
+    CameraShake shake;
     SpriteRenderer sprite;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+        vanFire = GetComponent<VanFire>();
+        pooler = GetComponent<ObjectPooler>();
 
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
-
+        shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
 
         randomRotatePoint = Random.Range(0, RotatePoint.Length);
         eventType = 1;
@@ -42,6 +48,7 @@ public class VD1 : MonoBehaviour
         target = new Vector2(bus.position.x, bus.position.y);
 
         health = 10f;
+        pooler.size = 20;
     }
 
     private void Update()
@@ -96,7 +103,9 @@ public class VD1 : MonoBehaviour
 
         if(health <= 5)
         {
-            
+            vanFire.startAngle = 0;
+            vanFire.endAngle = -360;
+            chaseSpeed = 55f;
         }
 
         // AI Stuff..
@@ -117,12 +126,14 @@ public class VD1 : MonoBehaviour
         {
             eventType = 1;
             randomRotatePoint = Random.Range(0, RotatePoint.Length);
+            shake.C_Shake(.1f, 3f, .7f);
             return;
         }
 
         if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet") || collision.CompareTag("ShieldBullet"))
         {
             Destroy(collision.transform.gameObject);
+            shake.C_Shake(.1f, 2.5f, 1f);
             StartCoroutine(HitFlash());
             health -= 1;
         }

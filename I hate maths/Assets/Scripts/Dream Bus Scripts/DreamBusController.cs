@@ -196,7 +196,7 @@ public class DreamBusController : MonoBehaviour
         {
             StartCoroutine(HitFlash());
             Destroy(collision.transform.gameObject);
-            shake.C_Shake(0.5f, 1f, 1f);
+            shake.C_Shake(0.5f, 2f, 1f);
             health -= 1;
         }
         if(collision.CompareTag("EnemyBomb"))
@@ -209,7 +209,7 @@ public class DreamBusController : MonoBehaviour
         if(collision.CompareTag("EnemyPoolBullet"))
         {
             collision.transform.gameObject.SetActive(false);
-            shake.C_Shake(.5f, 1f, 1f);
+            shake.C_Shake(.5f, 2f, 1f);
             health -= 1;
         }
 

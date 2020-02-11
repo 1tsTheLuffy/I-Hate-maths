@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6267643019636766605}
   m_Layer: 0
   m_Name: Van Diagram
-  m_TagString: Untagged
+  m_TagString: VD1
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -175,9 +175,9 @@ MonoBehaviour:
   target: {x: 0, y: 0}
   eventType: 0
   randomRotatePoint: 3
-  movementSpeed: 15
+  movementSpeed: 20
   chaseSpeed: 30
-  rotateAmount: 150
+  rotateAmount: 120
   distance: 11.792392
   minDistance: 4
   timeToMove: 4
@@ -187,6 +187,12 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  damageColor:
+  - {r: 1, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.49045774, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
+  vanFire: {fileID: 0}
+  pooler: {fileID: 0}
 --- !u!114 &6267643019636766597
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,7 +205,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15e9f32e3bbf8ff4193b13c62a113ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  size: 20
+  size: 40
   prefab: {fileID: 3368283304531815764, guid: 6172dac2c6dec9543af89a6553855444, type: 3}
 --- !u!114 &6267643019636766605
 MonoBehaviour:
@@ -217,6 +223,7 @@ MonoBehaviour:
   startAngle: 0
   endAngle: -720
   angleStep: 0
-  timer: 2
-  timeBtwSpawn: 2
+  stepMultiple: 0.5
+  timer: 1.5
+  timeBtwSpawn: 1.5
   shootPoint: {fileID: 6267643019636766594}

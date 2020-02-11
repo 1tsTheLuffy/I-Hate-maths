@@ -16,7 +16,7 @@ public class VD_1_Bullet : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        InvokeRepeating("Disable", 0, 3f);
+       // InvokeRepeating("Disable", 0, 3f);
     }
 
     private void FixedUpdate()

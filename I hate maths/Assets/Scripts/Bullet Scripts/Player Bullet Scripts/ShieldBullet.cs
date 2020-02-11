@@ -8,6 +8,7 @@ public class ShieldBullet : MonoBehaviour
     [SerializeField] float destroyWaitTime;
 
     [SerializeField] GameObject shockParticle;
+    [SerializeField] GameObject destroyParticle;
 
     Rigidbody2D rb;
 
@@ -40,5 +41,11 @@ public class ShieldBullet : MonoBehaviour
         {
             collision.transform.gameObject.SetActive(false);
         }
+    }
+
+    private void OnDestroy()
+    {
+        GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
+        Destroy(instance, 1.2f);
     }
 }

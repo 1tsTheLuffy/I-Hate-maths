@@ -167,3 +167,5 @@ MonoBehaviour:
   destroyWaitTime: 0.45
   shockParticle: {fileID: 8690166602341789402, guid: 723c1e8dcf340e845b7d927d7258188d,
     type: 3}
+  destroyParticle: {fileID: 5873874872479910017, guid: 2baba422134d46144943bbf6909b935e,
+    type: 3}
