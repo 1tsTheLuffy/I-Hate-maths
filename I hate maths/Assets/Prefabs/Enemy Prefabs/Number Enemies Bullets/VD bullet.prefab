@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4188711599921038160}
   m_Layer: 0
   m_Name: VD bullet
-  m_TagString: Untagged
+  m_TagString: EnemyPoolBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!58 &1170268358133073902
 CircleCollider2D:
@@ -134,3 +134,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  destroyParticle: {fileID: 7139877200667302970, guid: 81d661bbfa2416a44802b5d74a76f1d1,
+    type: 3}

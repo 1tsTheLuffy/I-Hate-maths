@@ -1,6 +1,8 @@
-﻿/* A Fire is responsible for shooting bullets in multiple directioon depending upon the angle 
- The gameobject does not required any type of script for shooring projectiles if this script is attached
+﻿/* This Fire script is responsible for shooting bullets in multiple directioon depending upon the angle 
+ The gameobject does not required any type of different script for shooring projectiles if this script is attached
  Every Gameobject requires different types of fire Scipt for now.......*/
+
+ // PEACE ..
 
 
 using System.Collections;

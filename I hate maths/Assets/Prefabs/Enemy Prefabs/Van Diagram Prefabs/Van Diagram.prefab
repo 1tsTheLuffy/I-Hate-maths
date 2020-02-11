@@ -176,9 +176,10 @@ MonoBehaviour:
   eventType: 0
   randomRotatePoint: 3
   movementSpeed: 15
+  chaseSpeed: 30
   rotateAmount: 150
   distance: 11.792392
-  minDistance: 2.5
+  minDistance: 4
   timeToMove: 4
   timeToMoveToDifferentPos: 4
   RotatePoint:

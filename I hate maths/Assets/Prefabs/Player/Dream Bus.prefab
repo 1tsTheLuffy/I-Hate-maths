@@ -270,14 +270,16 @@ MonoBehaviour:
   bulletParticleType:
   - {fileID: 5779331684061460634, guid: 41b6852f217e4434fb7036338a065e83, type: 3}
   - {fileID: 5779331684061460634, guid: 6abde46de3aaeae489430d75af924166, type: 3}
+  - {fileID: 5779331684061460634, guid: 1bf991950b1d90542a2b6c8854641a7a, type: 3}
   bullet: {fileID: 0}
   bulletParticle: {fileID: 0}
   Electric: {fileID: 8396600832773653134, guid: e6cc9c7efbdd7e54fa71ef02009fa760,
     type: 3}
   healthParticle: {fileID: 5924469259497699012, guid: e84bc4bc7bb120647b8602cd750887d0,
     type: 3}
-  PowerUpTaken: {fileID: 4966417720466838667, guid: 37ec185f45abfc048832aff7eab6309e,
-    type: 3}
+  PowerUpTaken:
+  - {fileID: 4966417720466838667, guid: 37ec185f45abfc048832aff7eab6309e, type: 3}
+  - {fileID: 4966417720466838667, guid: 4b236d0d1bc0ab0409170f2b513779b5, type: 3}
   shootPoint: {fileID: 4624389411624392369}
   trailPoint: {fileID: 4624389412496967075}
   shockPoint: {fileID: 8666468015955484973, guid: 86c80bc4d0cb81941ba5a52c97a5b9f6,

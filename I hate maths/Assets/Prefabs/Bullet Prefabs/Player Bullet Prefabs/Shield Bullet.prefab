@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4787905591614951632}
   m_Layer: 0
   m_Name: Shield Bullet
-  m_TagString: Untagged
+  m_TagString: ShieldBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -164,3 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 35
+  destroyWaitTime: 0.45
+  shockParticle: {fileID: 8690166602341789402, guid: 723c1e8dcf340e845b7d927d7258188d,
+    type: 3}

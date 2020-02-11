@@ -8,6 +8,8 @@ public class VD_1_Bullet : MonoBehaviour
 
     private Vector2 moveDirection;
 
+    [SerializeField] GameObject destroyParticle;
+
     Rigidbody2D rb;
 
     private void Start()
@@ -32,6 +34,13 @@ public class VD_1_Bullet : MonoBehaviour
         if(collision.CompareTag("DreamBus"))
         {
             gameObject.SetActive(false);
+        }
+
+        if(collision.CompareTag("ShieldBullet") || collision.CompareTag("Electric"))
+        {
+            gameObject.SetActive(false);
+            Instantiate(destroyParticle, transform.position, Quaternion.identity);
+            Debug.Log("HIT!!");
         }
     }
 

@@ -33,7 +33,7 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] GameObject bulletParticle;
     [SerializeField] GameObject Electric;
     [SerializeField] GameObject healthParticle;
-    [SerializeField] GameObject PowerUpTaken;
+    [SerializeField] GameObject[] PowerUpTaken;
 
     [Header("Transforms")]
     [SerializeField] Transform shootPoint;
@@ -127,6 +127,10 @@ public class DreamBusController : MonoBehaviour
         {
             timeBtwShoot = .45f;
             bulletParticle = bulletParticleType[1];
+        }else if(bullet == bulletType[2])
+        {
+            timeBtwShoot = .52f;
+            bulletParticle = bulletParticleType[2];
         }
 
         //
@@ -182,6 +186,8 @@ public class DreamBusController : MonoBehaviour
         transform.Translate(movement.x * movementSpeed * Time.fixedDeltaTime, movement.y * movementSpeed * Time.fixedDeltaTime, rb.transform.position.z);
     }
 
+    // TRIGGER.
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // Triggers for detecting Hit..
@@ -207,6 +213,11 @@ public class DreamBusController : MonoBehaviour
             health -= 1;
         }
 
+        if(collision.CompareTag("VD1"))
+        {
+            health -= 2;
+        }
+
         //
 
         // Trigger for detecting Power up hit..
@@ -225,7 +236,7 @@ public class DreamBusController : MonoBehaviour
         */
         if(collision.CompareTag("TriangleBulletPowerUp"))
         {
-            GameObject instance = Instantiate(PowerUpTaken, transform.position, Quaternion.identity);
+            GameObject instance = Instantiate(PowerUpTaken[0], transform.position, Quaternion.identity);
             StartCoroutine(PowerFlash(Color.red));
             bullet = bulletType[1];
             bulletParticle = bulletParticleType[1];
@@ -242,9 +253,11 @@ public class DreamBusController : MonoBehaviour
 
         if(collision.CompareTag("ShieldBulletPowerUp"))
         {
+            GameObject instance = Instantiate(PowerUpTaken[1], transform.position, Quaternion.identity);
             StartCoroutine(PowerFlash(Color.green));
             bullet = bulletType[2];
             Destroy(collision.transform.gameObject);
+            Destroy(instance, 1f);
             if(bullet == bulletType[0] || bullet == bulletType[1])
             {
                 timeStart = 20f;
@@ -254,6 +267,8 @@ public class DreamBusController : MonoBehaviour
             }
         }
     }
+
+    //TRIGGER..
 
     private GameObject Shoot()
     {

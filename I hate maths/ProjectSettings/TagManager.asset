@@ -19,6 +19,8 @@ TagManager:
   - Health
   - TriangleBulletPowerUp
   - ShieldBulletPowerUp
+  - VD1
+  - ShieldBullet
   layers:
   - Default
   - TransparentFX

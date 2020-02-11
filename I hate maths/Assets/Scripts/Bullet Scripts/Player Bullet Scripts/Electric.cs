@@ -38,5 +38,10 @@ public class Electric : MonoBehaviour
             instance = Instantiate(shockParticles, collision.transform.position, Quaternion.identity);
             Destroy(collision.transform.gameObject);
         }
+
+        //if(collision.CompareTag("EnemyPoolBullet"))
+        //{
+        //    collision.transform.gameObject.SetActive(false);
+        //}
     }
 }
