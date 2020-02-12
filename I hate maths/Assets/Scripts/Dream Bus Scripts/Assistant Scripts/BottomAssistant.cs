@@ -8,8 +8,13 @@ public class BottomAssistant : MonoBehaviour
     [SerializeField] float x;
     [SerializeField] float y;
     [SerializeField] float movementSpeed;
+    [SerializeField] float timer;
+    [SerializeField] float timeBtwSpawn;
 
     public static GameObject instance;
+    [SerializeField] GameObject bullet;
+
+    [SerializeField] Transform shootPoint;
 
     private Transform bus;
 
@@ -31,6 +36,20 @@ public class BottomAssistant : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
+
+        timer = timeBtwSpawn;
+    }
+
+    private void FixedUpdate()
+    {
+        if(timer <= 0)
+        {
+            Instantiate(bullet, shootPoint.position, Quaternion.identity);
+            timer = timeBtwSpawn;
+        }else
+        {
+            timer -= Time.deltaTime;
+        }
     }
 
     private void Update()
