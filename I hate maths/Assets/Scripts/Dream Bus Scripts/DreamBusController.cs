@@ -162,7 +162,7 @@ public class DreamBusController : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
-           // SceneManager.LoadScene(0);
+            SceneManager.LoadScene(0);
         }
 
         if(Input.GetKeyDown(KeyCode.Q))

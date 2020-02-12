@@ -29,6 +29,7 @@ public class PowerUpSpawner : MonoBehaviour
         {
             StartCoroutine(Health());
             StartCoroutine(BulletPowerUp());
+            StartCoroutine(Assistant());
         }
     }
 
@@ -49,11 +50,24 @@ public class PowerUpSpawner : MonoBehaviour
         isStarted = true;
         while(isStarted == true)
         {
-            float delay = Random.Range(power[0].x, power[0].y);
+            float delay = Random.Range(power[1].x, power[1].y);
             yield return new WaitForSeconds(delay);
-            int i = Random.Range(0, power[0].points.Length);
-            int j = Random.Range(0, power[0].PowerUp.Length);
-            Instantiate(power[0].PowerUp[j], power[0].points[i].position, Quaternion.identity);
+            int i = Random.Range(0, power[1].points.Length);
+            int j = Random.Range(0, power[1].PowerUp.Length);
+            Instantiate(power[1].PowerUp[j], power[1].points[i].position, Quaternion.identity);
+        }
+    }
+
+    IEnumerator Assistant()
+    {
+        isStarted = true;
+        while(isStarted == true)
+        {
+            float delay = Random.Range(power[2].x, power[2].y);
+            yield return new WaitForSeconds(delay);
+            int i = Random.Range(0, power[2].points.Length);
+            int j = Random.Range(0, power[2].PowerUp.Length);
+            Instantiate(power[2].PowerUp[j], power[2].points[i].position, Quaternion.identity);
         }
     }
 }

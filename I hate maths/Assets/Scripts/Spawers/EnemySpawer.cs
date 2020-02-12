@@ -99,6 +99,10 @@ public class EnemySpawer : MonoBehaviour
                 StartCoroutine(VD());
             }
         }
+
+        // SCORE LOGIC........
+
+        // .......SCORE LOGIC
     }
 
     IEnumerator One()
