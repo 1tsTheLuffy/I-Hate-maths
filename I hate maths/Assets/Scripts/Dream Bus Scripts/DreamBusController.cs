@@ -26,6 +26,7 @@ public class DreamBusController : MonoBehaviour
  
     [Header("UI")]
     [SerializeField] TextMeshProUGUI healthText;
+    [SerializeField] TextMeshProUGUI timerText;
 
     [Header("GameObjects")]
     [SerializeField] GameObject[] bulletType;
@@ -35,6 +36,7 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] GameObject Electric;
     [SerializeField] GameObject healthParticle;
     [SerializeField] GameObject[] PowerUpTaken;
+    [SerializeField] GameObject timerObj;
 
     [Header("Transforms")]
     [SerializeField] Transform shootPoint;
@@ -66,6 +68,9 @@ public class DreamBusController : MonoBehaviour
         bulletParticle = bulletParticleType[0];
 
         healthText.text = health.ToString();
+        timerText.text = timeStart.ToString("0");
+
+        timerObj.SetActive(false);
 
         timer = timeBtwShoot;
 
@@ -178,6 +183,12 @@ public class DreamBusController : MonoBehaviour
 
         //
 
+        //
+
+        timerText.text = timeStart.ToString("0");
+
+        //
+
         if (Input.GetKeyDown(KeyCode.R) || Input.GetMouseButtonDown(1))
         {
             Blast();
@@ -242,6 +253,7 @@ public class DreamBusController : MonoBehaviour
         */
         if(collision.CompareTag("TriangleBulletPowerUp"))
         {
+            timerObj.SetActive(true);
             GameObject instance = Instantiate(PowerUpTaken[0], transform.position, Quaternion.identity);
             StartCoroutine(PowerFlash(Color.red));
             bullet = bulletType[1];

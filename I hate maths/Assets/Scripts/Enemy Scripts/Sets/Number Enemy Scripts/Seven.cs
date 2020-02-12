@@ -66,15 +66,15 @@ public class Seven : MonoBehaviour
             sm.score++;
             shake.C_Shake(.1f, .5f, .5f);
         }
-        if (collision.CompareTag("TriangleBullet"))
+        if (collision.CompareTag("TriangleBullet") || collision.CompareTag("ShieldBullet"))
         {
             shake.C_Shake(.1f, 2.5f, 1f);
             health = 0;
+            sm.score++;
         }
         if (collision.CompareTag("Electric"))
         {
             health = 0;
-            sm.score++;
             shake.C_Shake(.1f, 1f, 1f);
         }
     }

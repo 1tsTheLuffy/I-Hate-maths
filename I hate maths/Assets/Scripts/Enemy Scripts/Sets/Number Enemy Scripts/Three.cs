@@ -50,7 +50,6 @@ public class Three : MonoBehaviour
         {
             //Destroy(gameObject);
             rb.gravityScale = 10f;
-            sm.score++;
             StartCoroutine(spawn());
         }
 
@@ -67,20 +66,20 @@ public class Three : MonoBehaviour
             controller.health -= 1;
             shake.C_Shake(.1f, 1f, 1f);
         }
-        if (collision.CompareTag("TriangleBullet"))
+        if (collision.CompareTag("TriangleBullet") || collision.CompareTag("ShieldBullet"))
         {
             shake.C_Shake(.1f, 2.5f, 1f);
+            sm.score++;
             health = 0;
         }
-        if (collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
+        if (collision.CompareTag("Bullet1"))
         {
             damageParticleInstance = Instantiate(damageParticle, collision.transform.position, Quaternion.identity);
-            rb.AddForce(Vector2.right * 20f * Time.deltaTime, ForceMode2D.Impulse);
-            health -= 1;
+            health = 0;
             Destroy(collision.transform.gameObject);
+            sm.score++;
             shake.C_Shake(.1f, 1f, 1f);
         }
-
         if(collision.CompareTag("Electric"))
         {
             Destroy(gameObject);

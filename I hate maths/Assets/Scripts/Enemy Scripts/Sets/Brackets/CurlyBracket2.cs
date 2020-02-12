@@ -17,13 +17,17 @@ public class CurlyBracket2 : MonoBehaviour
     [SerializeField] Transform Point;
     [SerializeField] Transform[] shootPoint;
 
+    PlayerScoreManager sm;
+
     Rigidbody2D rb;
     CameraShake shake;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        sm = GameObject.FindGameObjectWithTag("SM").GetComponent<PlayerScoreManager>();
 
         health = 1;
         timer = timeBtwSpawn;
@@ -48,9 +52,7 @@ public class CurlyBracket2 : MonoBehaviour
 
         if(health <= 0)
         {
-            shake.elapsedTime = .1f;
-            shake.shakeAmplitude = 2f;
-            shake.shakeFrequency = 1f;
+            shake.C_Shake(.1f, 1f, 1f);
             Destroy(gameObject);
         }
     }
@@ -70,12 +72,14 @@ public class CurlyBracket2 : MonoBehaviour
     {
         if(collision.CompareTag("Bullet1"))
         {
-            health = 0;
             shake.C_Shake(.01f,1f,1f);
+            sm.score++;
+            health = 0;
         }
-        if (collision.CompareTag("TriangleBullet"))
+        if (collision.CompareTag("TriangleBullet") || collision.CompareTag("ShieldBullet"))
         {
             shake.C_Shake(.1f, 2.5f, 1f);
+            sm.score++;
             health = 0;
         }
         if (collision.CompareTag("Electric"))

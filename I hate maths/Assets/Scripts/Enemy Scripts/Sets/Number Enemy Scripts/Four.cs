@@ -14,13 +14,17 @@ public class Four : MonoBehaviour
 
     [SerializeField] Transform spawnPoint;
 
+    PlayerScoreManager sm;
+
     Rigidbody2D rb;
     CameraShake shake;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        sm = GameObject.FindGameObjectWithTag("SM").GetComponent<PlayerScoreManager>();
 
         health = 1;
 
@@ -56,9 +60,15 @@ public class Four : MonoBehaviour
         {
             Destroy(collision.transform.gameObject);
             health = 0;
+            sm.score++;
             shake.C_Shake(.1f, 1f, 1f);
         }   
-
+        if(collision.CompareTag("TriangleBullet") || collision.CompareTag("ShieldBullet"))
+        {
+            health = 0;
+            sm.score++;
+            shake.C_Shake(.1f, 1f, 1f);
+        }
         if(collision.CompareTag("Electric"))
         {
             health = 0;

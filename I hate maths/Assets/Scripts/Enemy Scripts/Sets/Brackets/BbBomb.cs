@@ -17,7 +17,9 @@ public class BbBomb : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+
         applyForce();
     }
 
@@ -37,9 +39,14 @@ public class BbBomb : MonoBehaviour
         if(collision.CompareTag("Bullet1"))
         {
             shake.C_Shake(.1f, 2f, .8f);
+            Destroy(collision.transform.gameObject);
             Destroy(gameObject);
         }
-
+        if(collision.CompareTag("TriangleBullet") || collision.CompareTag("ShieldBullet"))
+        {
+            shake.C_Shake(.1f, 1f, .8f);
+            Destroy(gameObject);
+        }
         if(collision.CompareTag("Electric"))
         {
             shake.C_Shake(.1f, 2f, .8f);

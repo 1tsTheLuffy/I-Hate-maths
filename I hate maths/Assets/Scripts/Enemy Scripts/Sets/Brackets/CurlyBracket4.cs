@@ -41,7 +41,6 @@ public class CurlyBracket4 : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
-            sm.score++;
         }
     }
 
@@ -49,13 +48,15 @@ public class CurlyBracket4 : MonoBehaviour
     {
         if(collision.CompareTag("Bullet1"))
         {
-            Destroy(collision.transform.gameObject);
-            health = 0;
             shake.C_Shake(.1f, 1f, 1f);
+            Destroy(collision.transform.gameObject);
+            sm.score++;
+            health = 0;
         }
         if (collision.CompareTag("TriangleBullet") || collision.CompareTag("ShieldBullet"))
         {
             shake.C_Shake(.1f, 2.5f, 1f);
+            sm.score++;
             health = 0;
         }
         if (collision.CompareTag("Electric"))

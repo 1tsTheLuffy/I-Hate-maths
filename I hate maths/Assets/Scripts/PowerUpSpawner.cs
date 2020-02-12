@@ -12,7 +12,7 @@ public class PowerUpSpawner : MonoBehaviour
         public string name;
         public float x;
         public float y;
-        public GameObject PowerUp;
+        public GameObject[] PowerUp;
         public Transform[] points;
     }
 
@@ -28,6 +28,7 @@ public class PowerUpSpawner : MonoBehaviour
         if(!isStarted)
         {
             StartCoroutine(Health());
+            StartCoroutine(BulletPowerUp());
         }
     }
 
@@ -39,7 +40,20 @@ public class PowerUpSpawner : MonoBehaviour
             float delay = Random.Range(power[0].x, power[0].y);
             yield return new WaitForSeconds(delay);
             int i = Random.Range(0, power[0].points.Length);
-            Instantiate(power[0].PowerUp, power[0].points[i].position, Quaternion.identity);
+            Instantiate(power[0].PowerUp[0], power[0].points[i].position, Quaternion.identity);
+        }
+    }
+
+    IEnumerator BulletPowerUp()
+    {
+        isStarted = true;
+        while(isStarted == true)
+        {
+            float delay = Random.Range(power[0].x, power[0].y);
+            yield return new WaitForSeconds(delay);
+            int i = Random.Range(0, power[0].points.Length);
+            int j = Random.Range(0, power[0].PowerUp.Length);
+            Instantiate(power[0].PowerUp[j], power[0].points[i].position, Quaternion.identity);
         }
     }
 }

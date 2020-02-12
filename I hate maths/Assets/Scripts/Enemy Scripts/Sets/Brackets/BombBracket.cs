@@ -62,7 +62,12 @@ public class BombBracket : MonoBehaviour
             sm.score++;
             health = 0;
         }
-
+        if(collision.CompareTag("TriangleBullet") || collision.CompareTag("ShieldBullet"))
+        {
+            shake.C_Shake(.1f, 1f, 1f);
+            sm.score++;
+            health = 0;
+        }
         if(collision.CompareTag("Electric"))
         {
             health = 0;

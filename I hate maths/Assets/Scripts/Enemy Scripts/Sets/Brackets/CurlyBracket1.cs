@@ -39,7 +39,6 @@ public class CurlyBracket1 : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
-            sm.score++;
         }
 
         Destroy(damageInstance, 1.5f);
@@ -51,12 +50,14 @@ public class CurlyBracket1 : MonoBehaviour
         {
             shake.C_Shake(.1f, 1f, 1f);
             damageInstance = Instantiate(damageParticle, collision.transform.position, Quaternion.identity);
+            sm.score++;
             Destroy(collision.transform.gameObject);
             health -= 1;
         }
-        if (collision.CompareTag("TriangleBullet"))
+        if (collision.CompareTag("TriangleBullet") || collision.CompareTag("ShieldBullet"))
         {
             shake.C_Shake(.1f, 2.5f, 1f);
+            sm.score++;
             health = 0;
         }
         if (collision.CompareTag("Electric"))

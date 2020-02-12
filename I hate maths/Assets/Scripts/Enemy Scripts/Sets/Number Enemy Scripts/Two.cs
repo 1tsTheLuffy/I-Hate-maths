@@ -58,7 +58,6 @@ public class Two : MonoBehaviour
         if(health <= 0)
         {
             Destroy(gameObject);
-            sm.score++;
         }
         
     }
@@ -79,20 +78,17 @@ public class Two : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Bullet1") || collision.CompareTag("TriangleBullet"))
+        if(collision.CompareTag("Bullet1"))
         {
             Destroy(collision.transform.gameObject);
             ThisShake(.1f, 1f, 1f);
+            sm.score++;
             health = 0;
         }
-        if (collision.CompareTag("TriangleBullet"))
+        if (collision.CompareTag("TriangleBullet") || collision.CompareTag("ShieldBullet"))
         {
             shake.C_Shake(.1f, 2.5f, 1f);
-            health = 0;
-        }
-        if (collision.CompareTag("TriangleBullet"))
-        {
-            shake.C_Shake(.1f, 2.5f, 1f);
+            sm.score++;
             health = 0;
         }
         if (collision.CompareTag("Electric"))
