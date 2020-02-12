@@ -23,13 +23,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3453007657326630439}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.366, y: -0.247, z: 0}
+  m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0.451, y: -0.247, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 6451856244575603331}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
 --- !u!1 &5095390176580915925
 GameObject:
   m_ObjectHideFlags: 0
@@ -180,6 +180,7 @@ GameObject:
   - component: {fileID: 1917653369985102512}
   - component: {fileID: 1961423815148056441}
   - component: {fileID: 424449436850984012}
+  - component: {fileID: 5894017014693321327}
   m_Layer: 0
   m_Name: Up Assistant
   m_TagString: Untagged
@@ -289,10 +290,18 @@ MonoBehaviour:
   x: 0
   y: 1
   movementSpeed: 27
-  timer: 1
-  timeBtwSpawn: 1
+  timer: 0.7
+  timeBtwSpawn: 0.7
   bullet: {fileID: 4814924757625144155, guid: c795dbddf63e08b4880a9e6579a314d2, type: 3}
+  bulletIntantiate: {fileID: 5779331684061460634, guid: 5f790095f332b2a4884093589e72924f,
+    type: 3}
+  destroyParticle: {fileID: 3062012884654522431, guid: 3e94286e2dd42cb45bf5af8b77d7a930,
+    type: 3}
   shootPoint: {fileID: 6089768305493509120}
+  hitColor:
+  - {r: 1, g: 0.9666667, b: 0, a: 1}
+  - {r: 1, g: 0.33333334, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0, a: 1}
 --- !u!95 &424449436850984012
 Animator:
   serializedVersion: 3
@@ -312,3 +321,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!70 &5894017014693321327
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7433976412652819264}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.07279902, y: -0.0070259823}
+  m_Size: {x: 0.8544018, y: 0.91889477}
+  m_Direction: 0
