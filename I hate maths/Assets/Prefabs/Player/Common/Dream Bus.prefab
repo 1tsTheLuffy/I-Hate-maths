@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2509465726723646638}
   - component: {fileID: 1076116308974997641}
   - component: {fileID: 4624389411292651040}
+  - component: {fileID: 5960301237452399999}
   m_Layer: 0
   m_Name: Dream Bus
   m_TagString: DreamBus
@@ -39,6 +40,7 @@ Transform:
   - {fileID: 4624389411624392369}
   - {fileID: 4624389412496967075}
   - {fileID: 4624389411920621093}
+  - {fileID: 1628302444944521320}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -139,7 +141,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4624389411292651047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -165,7 +167,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4624389411292651047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -217,7 +219,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4624389411292651047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
@@ -295,6 +297,23 @@ MonoBehaviour:
     m_Bits: 256
   shake: {fileID: 0}
   sr: {fileID: 0}
+--- !u!114 &5960301237452399999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4624389411292651047}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0bd0a4ffca45e246a5468471eff0ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  assistantNum: 0
+  assistant:
+  - {fileID: 7433976412652819264, guid: bafbc17ca674f81499a235dcb4d830ab, type: 3}
+  - {fileID: 7881130498298378410, guid: 5096546f093322a46810f4949d235cdd, type: 3}
+  assistantPoint: {fileID: 1628302444944521320}
 --- !u!1 &4624389411624392368
 GameObject:
   m_ObjectHideFlags: 0
@@ -563,4 +582,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 4624389411292651054}
   m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6427123910679643144
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1628302444944521320}
+  m_Layer: 0
+  m_Name: Assistant Point
+  m_TagString: Untagged
+  m_Icon: {fileID: -1412012063857583412, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1628302444944521320
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6427123910679643144}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.21, y: -0.22, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4624389411292651054}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
