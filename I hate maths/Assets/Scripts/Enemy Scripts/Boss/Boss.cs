@@ -2,14 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Boss : MonoBehaviour
 {
-    public int stage;
-    [SerializeField] float movementSpeed;
-    [SerializeField] float timer;
-    [SerializeField] float timeBtwSpawn;
+
+    private int randomMovePoint;
+    [SerializeField] int eventType;
+
+    [SerializeField] float movementSpeed; 
+
+    [Header("Timers")]
+    [SerializeField] float startTime;
+    [SerializeField] float timeToMoveToNextState;
+    [SerializeField] float waitTime;
+    [SerializeField] float goTime;
+
+    [SerializeField] Vector2 target;
 
     [SerializeField] Transform[] movePoints;
+    [SerializeField] Transform bus;
 
     Rigidbody2D rb;
     Animator animator;
@@ -19,28 +30,94 @@ public class Boss : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        stage = Random.Range(1, 3);
+        bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
 
-        StartCoroutine(boss());
+        target = new Vector2(bus.position.x, bus.position.y);
+
+        startTime = timeToMoveToNextState;
+        waitTime = goTime;
+
+        eventType = Random.Range(1, 4);
+        randomMovePoint = Random.Range(0, movePoints.Length);
     }
 
-    IEnumerator boss()
+    private void Update()
     {
-        while(true)
+        if(eventType == 1)
         {
-            if (stage == 1)
+            animator.SetBool("isGun", true);
+            animator.SetBool("isThorn", false);
+
+            transform.Rotate(0f, 0f, 7.5f);
+
+           // timeToMoveToNextState = Random.Range(6f, 10f);
+
+           // randomMovePoint = Random.Range(0, movePoints.Length);
+            transform.position = Vector2.MoveTowards(transform.position, movePoints[randomMovePoint].position, movementSpeed * Time.deltaTime);
+
+
+            if(Vector2.Distance(transform.position, movePoints[randomMovePoint].position) < .2f)
             {
-                animator.SetBool("isGun", true);
-                float delay = Random.Range(4f, 8f);
-                yield return new WaitForSeconds(delay);
-                stage = Random.Range(1, 3);
+                randomMovePoint = Random.Range(0, movePoints.Length);
+                waitTime = goTime;
+                
             }
-            else if (stage == 2)
+
+            if(startTime <= 0)
             {
-                animator.SetBool("isThorn", true);
-                float delay = Random.Range(4f, 8f);
-                yield return new WaitForSeconds(delay);
-                stage = Random.Range(1, 3);
+                eventType = Random.Range(1, 4);
+                if(eventType == 2)
+                {
+                    target = new Vector2(bus.position.x, bus.position.y);
+                }
+                startTime = timeToMoveToNextState;
+            }else
+            {
+                startTime -= Time.deltaTime;
+            }
+        }else if(eventType == 2)
+        {
+            animator.SetBool("isThorn", true);
+            animator.SetBool("isGun", false);
+            transform.Rotate(0f, 0f, 10f);
+            transform.position = Vector2.MoveTowards(transform.position, target, movementSpeed * Time.deltaTime);
+        }else if(eventType == 3)
+        {
+            animator.SetBool("isThorn", false);
+            animator.SetBool("isGun", false);
+
+            if(startTime <= 0)
+            {
+                eventType = Random.Range(1, 4);
+                startTime = timeToMoveToNextState;
+            }else
+            {
+                startTime -= Time.deltaTime;
+            }
+        }
+
+        if(transform.position.x == target.x && transform.position.y == target.y)
+        {
+            eventType = 1;
+            randomMovePoint = Random.Range(0, movePoints.Length);
+            return;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("DreamBus"))
+        {
+            eventType = 1;
+            return;
+        }
+
+        if(collision.CompareTag("Bullet1"))
+        {
+            if(eventType == 3)
+            {
+                Destroy(collision.transform.gameObject);
+                Debug.Log("Damage!!");
             }
         }
     }
