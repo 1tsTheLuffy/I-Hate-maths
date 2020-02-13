@@ -22,6 +22,7 @@ TagManager:
   - VD1
   - ShieldBullet
   - AssistantPowerUp
+  - Set_Boss
   layers:
   - Default
   - TransparentFX

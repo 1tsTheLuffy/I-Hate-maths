@@ -234,6 +234,10 @@ public class DreamBusController : MonoBehaviour
             health -= 2;
             shake.C_Shake(.1f, 3f, .7f);
         }
+        if(collision.CompareTag("Set_Boss"))
+        {
+            health -= 2;
+        }
 
         //
 
