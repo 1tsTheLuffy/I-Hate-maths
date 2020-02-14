@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8557206737582108742}
   - component: {fileID: 8557206737582108741}
   m_Layer: 0
-  m_Name: Boss
+  m_Name: Set_Boss
   m_TagString: Set_Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -156,12 +156,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af1d103b39df7784c95927971689c3a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   eventType: 3
   movementSpeed: 15
   startTime: 3.98
   timeToMoveToNextState: 4
-  timer: 0.07
-  timeToShoot: 0.07
+  timer: 0.1
+  timeToShoot: 0.1
   target: {x: -19.27, y: -1.25}
   Bullet:
   - {fileID: 9164293460397971984, guid: dbc0910e44a0b36439e56115e24290fb, type: 3}
@@ -191,6 +192,7 @@ MonoBehaviour:
   - {fileID: 8557206738765842077}
   - {fileID: 8557206737642248904}
   bus: {fileID: 0}
+  hitColor: []
 --- !u!1 &8557206737642248903
 GameObject:
   m_ObjectHideFlags: 0
