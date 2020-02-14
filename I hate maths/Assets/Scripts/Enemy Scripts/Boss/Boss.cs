@@ -29,6 +29,8 @@ public class Boss : MonoBehaviour
 
     [SerializeField] Color[] hitColor;
 
+    CameraShake shake;
+
     Rigidbody2D rb;
     SpriteRenderer sr;
     Animator animator;
@@ -40,6 +42,7 @@ public class Boss : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
 
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
+        shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
 
         target = new Vector2(bus.position.x, bus.position.y);
 
@@ -55,7 +58,7 @@ public class Boss : MonoBehaviour
 
     private void Update()
     {
-        if (health > 25)
+        if (health > 25)                            // +++++++++++ FIRST STAGE OF THE BOSS +++++++++++++ \\
         {
             if (eventType == 1)
             {
@@ -131,7 +134,7 @@ public class Boss : MonoBehaviour
                 return;
             }
         }
-        if (health < 25)
+        if (health < 25)                   // +++++++++++ SECOND STAGE OF THE BOSS +++++++++++++ \\
         {
             sr.color = Color.magenta;
             animator.SetTrigger("Second");
@@ -143,7 +146,7 @@ public class Boss : MonoBehaviour
              
                 if(timer <= 0)
                 {
-                    shoot();
+                   // shoot();
                     timer = .08f;
                 }else
                 {
@@ -152,7 +155,7 @@ public class Boss : MonoBehaviour
 
                 if(startTime <= 0)
                 {
-                    secondStageEvent = Random.Range(1, 3);
+                    secondStageEvent = Random.Range(1, 4);
                     startTime = timeToMoveToNextState;
                 }else
                 {
@@ -164,22 +167,38 @@ public class Boss : MonoBehaviour
                 return;
             }else if(secondStageEvent == 3)
             {
-                health += .05f;
-                startTime = .5f;
-                if(startTime <= 0)
+                if (health < 20)
                 {
-                    secondStageEvent = Random.Range(1, 4);
-                    if(secondStageEvent == 3)
+                    animator.SetBool("isHealing", true);
+                    sr.color = Color.green;
+                    health += .01f;
+                    startTime = .5f;
+                    if (startTime <= 0)
                     {
-                        secondStageEvent = 2;
+                        secondStageEvent = Random.Range(1, 4);
+                        if (secondStageEvent == 3)
+                        {
+                            secondStageEvent = 2;
+                        }
+                        animator.SetBool("isHealing", false);
+                        startTime = timeToMoveToNextState;
                     }
-                    startTime = timeToMoveToNextState;
+                    else
+                    {
+                        startTime -= timeToMoveToNextState;
+                    }
                 }else
                 {
-                    startTime -= timeToMoveToNextState;
+                    secondStageEvent = 1;
                 }
+                return;
             }
         } 
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
 
         if(Input.GetKeyDown(KeyCode.L))
         {
@@ -191,6 +210,7 @@ public class Boss : MonoBehaviour
     {
         if(collision.CompareTag("DreamBus"))
         {
+            shake.C_Shake(.07f, 2.5f, .8f);
             eventType = 1;
            // randomMovePoint = Random.Range(0, movePoints.Length);
             return;
@@ -200,6 +220,7 @@ public class Boss : MonoBehaviour
         {
             if(eventType == 3)
             {
+                shake.C_Shake(.08f, 1f, .8f);
                 Destroy(collision.transform.gameObject);
                 health -= 1; 
                 GameObject instance = Instantiate(damageParticle, collision.transform.position, Quaternion.identity);
@@ -207,6 +228,7 @@ public class Boss : MonoBehaviour
             }
             if(eventType == 2)
             {
+                shake.C_Shake(.08f, 1f, .8f);
                 Destroy(collision.transform.gameObject);
                 health -= 1;
                 eventType = 1;
@@ -215,11 +237,19 @@ public class Boss : MonoBehaviour
             {
                 if (secondStageEvent == 1)
                 {
+                    shake.C_Shake(.08f, 1f, .8f);
                     Destroy(collision.transform.gameObject);
                     health -= 1;
                     GameObject instance = Instantiate(damageParticle, collision.transform.position, Quaternion.identity);
                     Destroy(instance, 1.2f);
                 }
+            }
+
+            if(collision.CompareTag("Electric"))
+            {
+                shake.C_Shake(.08f, 3f, .8f);
+                Destroy(collision.transform.gameObject);
+                health -= 5f;
             }
         }
     }
