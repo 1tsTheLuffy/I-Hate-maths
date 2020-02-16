@@ -13,7 +13,7 @@ public class PlayerScoreManager : MonoBehaviour
 
     private void Start()
     {
-        score = 10;
+        score = 0;
         scoreText.text = score.ToString();
         bar.slider.maxValue = 100;
         bar.SetMinValue(score);

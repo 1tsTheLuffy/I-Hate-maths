@@ -264,10 +264,14 @@ MonoBehaviour:
   shockTime: 1
   timeStart: 0
   timeToChangeBullet: 0
+  heatNum: 0
+  heatTimer: 0
+  startHeatTimer: 0
   electricNumber: 0
   healthText: {fileID: 0}
   timerText: {fileID: 0}
   electricPowerUpText: {fileID: 0}
+  heatNumText: {fileID: 0}
   bulletType:
   - {fileID: 7000307223416912072, guid: 518bf536176dac94aba505139d926e58, type: 3}
   - {fileID: 4301549098020708905, guid: 999b156813a79d349804ca178504b62f, type: 3}

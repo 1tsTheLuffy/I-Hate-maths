@@ -48,32 +48,32 @@ public class EnemySpawer : MonoBehaviour
             //isStarted = false;
         }
 
-        // Two..
-        if(sm.score > 15)
-        {
-            if(isTwoStarted == false)
-            {
-                StartCoroutine(Two());
-            }
-        }
+        //// Two..
+        //if(sm.score > 15)
+        //{
+        //    if(isTwoStarted == false)
+        //    {
+        //        StartCoroutine(Two());
+        //    }
+        //}
         
-        // Bomb Btacket..
-        if(sm.score > 25)
-        {
-            if(isBombBracketI == false)
-            {
-                StartCoroutine(BombBracket());
-            }
-        }
+        //// Bomb Btacket..
+        //if(sm.score > 25)
+        //{
+        //    if(isBombBracketI == false)
+        //    {
+        //        StartCoroutine(BombBracket());
+        //    }
+        //}
 
-        // CB2..
-        if(sm.score > 15)
-        {
-            if(isCB2Started == false)
-            {
-                StartCoroutine(CB2());
-            }
-        }
+        //// CB2..
+        //if(sm.score > 15)
+        //{
+        //    if(isCB2Started == false)
+        //    {
+        //        StartCoroutine(CB2());
+        //    }
+        //}
 
         // Half Curl..
         if(sm.score > 10)
@@ -84,23 +84,23 @@ public class EnemySpawer : MonoBehaviour
             }
         }
 
-        // Four..
-        if(sm.score > 35)
-        {
-            if(isFourStarted == false)
-            {
-                StartCoroutine(Four());
-            }
-        }
+        //// Four..
+        //if(sm.score > 35)
+        //{
+        //    if(isFourStarted == false)
+        //    {
+        //        StartCoroutine(Four());
+        //    }
+        //}
 
-        // VD..
-        if(sm.score > 50)
-        {
-            if(isVanStarted == false)
-            {
-                StartCoroutine(VD());
-            }
-        }
+        //// VD..
+        //if(sm.score > 50)
+        //{
+        //    if(isVanStarted == false)
+        //    {
+        //        StartCoroutine(VD());
+        //    }
+        //}
 
         // SCORE LOGIC........ (Enemy movements will depend on the score of the player)....
 
@@ -108,9 +108,26 @@ public class EnemySpawer : MonoBehaviour
 
         if(sm.score > 20)
         {
-            getEnemyData[0].x = 2f;
-            getEnemyData[0].y = 5f;
+            getEnemyData[0].x = 1.5f;
+            getEnemyData[0].y = 3.5f;
+
+            //For Seven..
+
+            getEnemyData[6].x = 2.4f;
+            getEnemyData[6].y = 4.4f;
         }
+
+        //
+
+        //For Half Curl and CB3..
+
+        if(sm.score > 35)
+        {
+            getEnemyData[4].x = 8;
+            getEnemyData[4].y = 16;
+        }
+
+        //
 
         // .......SCORE LOGIC
     }

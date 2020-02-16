@@ -143,6 +143,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00faa8e6f2e930b49aee4780a8373648, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 20
+  speed: 35
   destroyParticle: {fileID: 6986459221904624333, guid: e8c26c04b3549c94d8630bb7654684bf,
     type: 3}
