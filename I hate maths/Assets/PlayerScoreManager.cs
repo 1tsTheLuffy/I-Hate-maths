@@ -9,13 +9,19 @@ public class PlayerScoreManager : MonoBehaviour
 
     public TextMeshProUGUI scoreText;
 
+    [SerializeField] ProgressBar bar;
+
     private void Start()
     {
+        score = 10;
         scoreText.text = score.ToString();
+        bar.slider.maxValue = 100;
+        bar.SetMinValue(score);
     }
 
     private void Update()
     {
         scoreText.text = score.ToString();
+        bar.SetValue(score);
     }
 }

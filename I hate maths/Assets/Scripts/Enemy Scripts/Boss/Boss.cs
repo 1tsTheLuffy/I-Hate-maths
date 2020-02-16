@@ -191,16 +191,27 @@ public class Boss : MonoBehaviour
                 }
             }else if(secondStageEvent == 2)
             {
+                sr.color = Color.red;
+                transform.Rotate(0f, 0f, 5f);
                 transform.position = Vector2.MoveTowards(transform.position, target, chaseSpeed * Time.deltaTime);
+
                 if(timer <= 0)
                 {
                     shoot();
-                    timer = timeToShoot;
+                    timer = .1f;
                 }else
                 {
                     timer -= Time.deltaTime;
                 }
-                return;
+
+                if(startTime <= 0)
+                {
+                    secondStageEvent = Random.Range(1, 4);
+                    startTime = timeToMoveToNextState;
+                }else
+                {
+                    startTime -= Time.deltaTime;
+                }
             }else if(secondStageEvent == 3)
             {
                 if (health < 20)
@@ -229,6 +240,13 @@ public class Boss : MonoBehaviour
                 {
                     secondStageEvent = 1;
                 }
+                return;
+            }
+
+            if(transform.position.x == target.x && transform.position.y == target.y)
+            {
+                secondStageEvent = 2;
+                target = new Vector2(bus.position.x, bus.position.y);
                 return;
             }
         } 
@@ -290,11 +308,16 @@ public class Boss : MonoBehaviour
             {
                 if (secondStageEvent == 1)
                 {
-                    shake.C_Shake(.08f, 1f, .8f);
+                    shake.C_Shake(.8f, 1f, .8f);
                     Destroy(collision.transform.gameObject);
                     health -= 1;
                     GameObject instance = Instantiate(damageParticle, collision.transform.position, Quaternion.identity);
                     Destroy(instance, 1.2f);
+                }
+                if(secondStageEvent == 2)
+                {
+                    shake.C_Shake(.8f, 1f, .8f);
+                    Destroy(collision.transform.gameObject);
                 }
             }
 

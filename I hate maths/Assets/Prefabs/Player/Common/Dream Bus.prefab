@@ -266,6 +266,8 @@ MonoBehaviour:
   timeToChangeBullet: 0
   electricNumber: 0
   healthText: {fileID: 0}
+  timerText: {fileID: 0}
+  electricPowerUpText: {fileID: 0}
   bulletType:
   - {fileID: 7000307223416912072, guid: 518bf536176dac94aba505139d926e58, type: 3}
   - {fileID: 4301549098020708905, guid: 999b156813a79d349804ca178504b62f, type: 3}
@@ -283,6 +285,9 @@ MonoBehaviour:
   PowerUpTaken:
   - {fileID: 4966417720466838667, guid: 37ec185f45abfc048832aff7eab6309e, type: 3}
   - {fileID: 4966417720466838667, guid: 4b236d0d1bc0ab0409170f2b513779b5, type: 3}
+  timerObj: {fileID: 0}
+  extraPowerUpParticle: {fileID: 5924469259497699012, guid: e14483874e2f97842b3ddf8ceeb216d7,
+    type: 3}
   shootPoint: {fileID: 4624389411624392369}
   trailPoint: {fileID: 4624389412496967075}
   shockPoint: {fileID: 8666468015955484973, guid: 86c80bc4d0cb81941ba5a52c97a5b9f6,

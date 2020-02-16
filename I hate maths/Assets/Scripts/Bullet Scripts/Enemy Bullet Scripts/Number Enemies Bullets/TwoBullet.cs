@@ -34,6 +34,11 @@ public class TwoBullet : MonoBehaviour
             Destroy(collision.transform.gameObject);
         }
 
+        if(collision.CompareTag("ShieldBullet"))
+        {
+            Destroy(gameObject);
+        }
+
         if(collision.CompareTag("Electric"))
         {
             Destroy(gameObject);

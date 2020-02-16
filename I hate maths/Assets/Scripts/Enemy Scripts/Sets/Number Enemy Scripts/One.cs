@@ -22,7 +22,9 @@ public class One : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
+
         if(controller == null)
         {
             controller = GameObject.FindGameObjectWithTag("DreamBus").GetComponent<DreamBusController>();
@@ -41,6 +43,7 @@ public class One : MonoBehaviour
     {
         target = new Vector2(bus.position.x, bus.position.y);
         
+       
     }
 
     private void Update()
@@ -49,7 +52,12 @@ public class One : MonoBehaviour
             return;
 
         distance = Vector2.Distance(transform.position, bus.position);
-        
+
+        if (sm.score > 20)
+        {
+            speed = 4f;
+        }
+
 
         if (health == 0)
         {

@@ -19,6 +19,8 @@ public class UpAssistant : MonoBehaviour
 
     [SerializeField] Transform shootPoint;
 
+    private Assistance assistance;
+
     private Transform bus;
 
     [SerializeField] Color[] hitColor;
@@ -45,6 +47,7 @@ public class UpAssistant : MonoBehaviour
 
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        assistance = GameObject.FindGameObjectWithTag("DreamBus").GetComponent<Assistance>();
 
         sr.color = Color.green;
 
@@ -70,6 +73,11 @@ public class UpAssistant : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+        }
+
+        if(Input.GetKeyDown(KeyCode.LeftAlt))
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -112,6 +120,7 @@ public class UpAssistant : MonoBehaviour
 
     private void OnDestroy()
     {
+        assistance.assistantNum = 0;
         GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
         Destroy(instance, 1.2f);
     }

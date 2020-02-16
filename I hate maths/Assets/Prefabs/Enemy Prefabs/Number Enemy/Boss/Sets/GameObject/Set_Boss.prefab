@@ -157,8 +157,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
+  currentHealth: 0
   eventType: 3
+  secondStageEvent: 0
   movementSpeed: 15
+  chaseSpeed: 20
   startTime: 3.98
   timeToMoveToNextState: 4
   timer: 0.1
@@ -192,6 +195,7 @@ MonoBehaviour:
   - {fileID: 8557206738765842077}
   - {fileID: 8557206737642248904}
   bus: {fileID: 0}
+  healthBar: {fileID: 0}
   hitColor: []
 --- !u!1 &8557206737642248903
 GameObject:

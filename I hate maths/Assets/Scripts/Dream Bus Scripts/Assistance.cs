@@ -12,9 +12,21 @@ public class Assistance : MonoBehaviour
 
     [SerializeField] Transform assistantPoint;
 
+    private PowerUpSpawner spawner;
+
     private void Start()
     {
+        spawner = GameObject.FindGameObjectWithTag("PowerUpSpawner").GetComponent<PowerUpSpawner>();
+
         assistantNum = 0;
+    }
+
+    private void Update()
+    {
+        if(assistantNum == 2)
+        {
+            spawner.isAssitance = true;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerUpSpawner : MonoBehaviour
 {
     private bool isStarted = false;
+    public bool isAssitance = false;
 
     [System.Serializable]
     public class Power
@@ -29,6 +30,10 @@ public class PowerUpSpawner : MonoBehaviour
         {
             StartCoroutine(Health());
             StartCoroutine(BulletPowerUp());
+        }
+
+        if(!isAssitance)
+        {
             StartCoroutine(Assistant());
         }
     }
@@ -58,10 +63,10 @@ public class PowerUpSpawner : MonoBehaviour
         }
     }
 
-    IEnumerator Assistant()
+    public IEnumerator Assistant()
     {
-        isStarted = true;
-        while(isStarted == true)
+        isAssitance = true;
+        while(isAssitance == true)
         {
             float delay = Random.Range(power[2].x, power[2].y);
             yield return new WaitForSeconds(delay);

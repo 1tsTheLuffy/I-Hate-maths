@@ -16,8 +16,11 @@ public class BottomAssistant : MonoBehaviour
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject bulletInstantiate;
     [SerializeField] GameObject destroyParticle;
+    
 
     [SerializeField] Transform shootPoint;
+
+    private Assistance assistance;
 
     private Transform bus;
 
@@ -45,6 +48,7 @@ public class BottomAssistant : MonoBehaviour
 
         bus = GameObject.FindGameObjectWithTag("DreamBus").transform;
         shake = GameObject.FindGameObjectWithTag("CameraShake").GetComponent<CameraShake>();
+        assistance = GameObject.FindGameObjectWithTag("DreamBus").GetComponent<Assistance>();
 
         sr.color = Color.green;
 
@@ -70,6 +74,11 @@ public class BottomAssistant : MonoBehaviour
         {
             Destroy(gameObject);
             return;
+        }
+
+        if(Input.GetKeyDown(KeyCode.RightAlt))
+        {
+            Destroy(gameObject);
         }
     }
 
@@ -110,6 +119,7 @@ public class BottomAssistant : MonoBehaviour
 
     private void OnDestroy()
     {
+        assistance.assistantNum = 1;
         GameObject instance = Instantiate(destroyParticle, transform.position, Quaternion.identity);
         Destroy(instance, 1.2f);
     }

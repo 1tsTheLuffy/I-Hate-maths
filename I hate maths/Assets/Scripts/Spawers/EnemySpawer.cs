@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemySpawer : MonoBehaviour
 {
+    #region boolean
     private bool isStarted;
     private bool isTwoStarted;
     private bool isBombBracketI;
@@ -11,6 +12,7 @@ public class EnemySpawer : MonoBehaviour
     private bool isHalfStarted;
     private bool isFourStarted;
     private bool isVanStarted;
+    #endregion
     PlayerScoreManager sm;
 
     [System.Serializable]
@@ -91,7 +93,7 @@ public class EnemySpawer : MonoBehaviour
             }
         }
 
-        // VF..
+        // VD..
         if(sm.score > 50)
         {
             if(isVanStarted == false)
@@ -100,7 +102,15 @@ public class EnemySpawer : MonoBehaviour
             }
         }
 
-        // SCORE LOGIC........
+        // SCORE LOGIC........ (Enemy movements will depend on the score of the player)....
+
+        // For one..
+
+        if(sm.score > 20)
+        {
+            getEnemyData[0].x = 2f;
+            getEnemyData[0].y = 5f;
+        }
 
         // .......SCORE LOGIC
     }
@@ -161,7 +171,8 @@ public class EnemySpawer : MonoBehaviour
             float delay = Random.Range(getEnemyData[4].x, getEnemyData[4].y);
             yield return new WaitForSeconds(delay);
             int i = Random.Range(0, getEnemyData[4].EnemyPosition.Length);
-            Instantiate(getEnemyData[4].Enemy[0], getEnemyData[4].EnemyPosition[i].position, Quaternion.identity);
+            int j = Random.Range(0, getEnemyData[4].Enemy.Length);
+            Instantiate(getEnemyData[4].Enemy[j], getEnemyData[4].EnemyPosition[i].position, Quaternion.identity);
         }
     }
 

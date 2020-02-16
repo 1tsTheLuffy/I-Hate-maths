@@ -23,6 +23,9 @@ TagManager:
   - ShieldBullet
   - AssistantPowerUp
   - Set_Boss
+  - ExtraPowerUp
+  - PowerUpSpawner
+  - EnemySpawner
   layers:
   - Default
   - TransparentFX
