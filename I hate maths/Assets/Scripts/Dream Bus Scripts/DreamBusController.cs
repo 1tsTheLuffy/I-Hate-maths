@@ -32,7 +32,6 @@ public class DreamBusController : MonoBehaviour
     [SerializeField] TextMeshProUGUI healthText;
     [SerializeField] TextMeshProUGUI timerText;
     [SerializeField] TextMeshProUGUI electricPowerUpText;
-    [SerializeField] TextMeshProUGUI heatNumText;
 
     [Header("GameObjects")]
     [SerializeField] GameObject[] bulletType;
@@ -59,6 +58,10 @@ public class DreamBusController : MonoBehaviour
     [Header("Shake")]
     [SerializeField] CameraShake shake;
 
+    [Space]
+    [SerializeField] HeatBar heatBar;
+    [Space]
+
     Rigidbody2D rb;
     [SerializeField] SpriteRenderer sr;
     Camera cam;
@@ -77,7 +80,7 @@ public class DreamBusController : MonoBehaviour
         healthText.text = health.ToString();
         timerText.text = timeStart.ToString("0");
         electricPowerUpText.text = electricNumber.ToString();
-        heatNumText.text = heatNum.ToString("0");
+
 
         timerObj.SetActive(false);
 
@@ -87,6 +90,7 @@ public class DreamBusController : MonoBehaviour
         health = 200;
         electricNumber = 2;
 
+        heatBar.setMinHeatValue(heatNum);
         isDeHeat = false;
 
         Cursor.visible = false;
@@ -104,8 +108,9 @@ public class DreamBusController : MonoBehaviour
 
         //For Shooting and everything related to shooting..
 
-        if((Input.GetKey(KeyCode.Z) || Input.GetMouseButton(0)) && timer <= 0 && heatNum < 20f)
+        if(Input.GetMouseButton(0) && timer <= 0 && heatNum < 20f)
         {
+            isDeHeat = false;
             Shoot();
             Instantiate(bulletParticle, shootPoint.position, shootPoint.rotation * new Quaternion(0f,90,0f,0f));
             shake.elapsedTime = shake.shakeDuration;
@@ -123,6 +128,11 @@ public class DreamBusController : MonoBehaviour
             timer -= Time.deltaTime;
         }
 
+        if(heatNum <= 0)
+        {
+            heatNum = 0;
+        }
+
         if(Input.GetMouseButtonUp(0))
         {
             if(isDeHeat == false)
@@ -130,7 +140,7 @@ public class DreamBusController : MonoBehaviour
                 StartCoroutine(DeHeat());
             }
         }
-
+        heatBar.setHeatValue(heatNum);
         //Electric Shooting..
         if(Input.GetKeyDown(KeyCode.Space) && shockTime <= 0 && electricNumber > 0)
         {
@@ -215,7 +225,6 @@ public class DreamBusController : MonoBehaviour
 
         timerText.text = timeStart.ToString("0");
         electricPowerUpText.text = electricNumber.ToString();
-        heatNumText.text = heatNum.ToString("0");
 
         //
 
@@ -384,7 +393,7 @@ public class DreamBusController : MonoBehaviour
         while(isDeHeat == true)
         {
             heatNum--;
-            yield return null;
+            yield return new WaitForSeconds(0.1f);
         }
     }
 

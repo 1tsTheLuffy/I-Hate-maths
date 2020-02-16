@@ -49,13 +49,13 @@ public class EnemySpawer : MonoBehaviour
         }
 
         //// Two..
-        //if(sm.score > 15)
-        //{
-        //    if(isTwoStarted == false)
-        //    {
-        //        StartCoroutine(Two());
-        //    }
-        //}
+        if(sm.score > 17)
+        {
+            if(isTwoStarted == false)
+            {
+                StartCoroutine(Two());
+            }
+        }
         
         //// Bomb Btacket..
         //if(sm.score > 25)
@@ -106,10 +106,10 @@ public class EnemySpawer : MonoBehaviour
 
         // For one..
 
-        if(sm.score > 20)
+        if(sm.score > 10)
         {
-            getEnemyData[0].x = 1.5f;
-            getEnemyData[0].y = 3.5f;
+            getEnemyData[0].x = 2f;
+            getEnemyData[0].y = 4f;
 
             //For Seven..
 
@@ -121,10 +121,21 @@ public class EnemySpawer : MonoBehaviour
 
         //For Half Curl and CB3..
 
-        if(sm.score > 35)
+        if(sm.score > 15)
         {
-            getEnemyData[4].x = 8;
-            getEnemyData[4].y = 16;
+            getEnemyData[4].x = 6f;
+            getEnemyData[4].y = 10f;
+        }
+        if(sm.score > 30)
+        {
+            getEnemyData[4].x = 12f;
+            getEnemyData[4].y = 20f;
+        }
+
+        if(sm.score > 25)
+        {
+            getEnemyData[1].x = 8f;
+            getEnemyData[1].y = 14f;
         }
 
         //

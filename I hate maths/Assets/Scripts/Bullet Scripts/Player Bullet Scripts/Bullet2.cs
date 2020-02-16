@@ -18,7 +18,7 @@ public class Bullet2 : MonoBehaviour
     private void Update()
     {
         transform.Rotate(8f, 0f, 0f);
-        Destroy(gameObject, 70f);
+        Destroy(gameObject, .8f);
     }
 
     private void FixedUpdate()
